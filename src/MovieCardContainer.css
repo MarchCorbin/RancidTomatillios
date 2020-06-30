@@ -1,0 +1,10 @@
+.movie-card-container {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  row-gap: 5%;
+  height: 85vh;
+  justify-content: space-evenly;
+  overflow: scroll;
+  padding: 2%;
+  width: 100%
+}
