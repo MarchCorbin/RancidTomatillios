@@ -3,9 +3,16 @@
   flex-direction: column;
   height: auto;
   margin-bottom: 5%;
-  width: auto
+  width: auto;
+
 }
 
 img {
   width: 100%
+}
+
+.movie-card-title, .release-date, .avg-rating {
+    background: linear-gradient(to right, #33cc33 8%, #00ffcc 99%);
+    color: black;
+    font-weight: 700;
 }
