@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header'
 import './App.css';
+import MovieCardContainer from './MovieCardContainer';
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class App extends Component {
     return (
       <main>
         <Header currentUser={this.state.currentUser}/>
+        <MovieCardContainer />
       </main>
     )
   }
