@@ -1,6 +1,6 @@
 import React from 'react'
 import './MovieCardContainer.css'
-import MovieCard from './MovieCard'
+import MovieCard from '../MovieCard/MovieCard'
 
 function MovieCardContainer(props) {
   const movieCards = props.allMovies.map(movie => {
@@ -13,7 +13,7 @@ function MovieCardContainer(props) {
     />
   })
   return (
-    <section className='movie-card-container'>
+    <section label='card-container' className='movie-card-container'>
       {movieCards}
     </section>
   )
