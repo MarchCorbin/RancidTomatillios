@@ -24,3 +24,13 @@ header h1{
   font-size: 4em;
   justify-self: center;
 }
+
+.icon {
+height: 100%
+}
+
+.icon-holder {
+display: flex;
+height: 100%;
+width: 100%;
+}
