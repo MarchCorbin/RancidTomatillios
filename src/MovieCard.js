@@ -1,30 +1,27 @@
 import React, { Component } from 'react'
 import './MovieCard.css'
 
-class MovieCard extends Component{
-  constructor() {
-    super()
-    this.state={
-      id: 475430,
-      poster: "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
-      title: "Artemis Fowl",
-      releaseDate: "2020-06-12",
-      avgRating: 5,
-    }
-  }
-
-  render() {
+// class MovieCard extends Component{
+//   constructor() {
+//     super()
+//     this.state={
+//       id: {props.id},
+//       poster: {props.poster},
+//       title: {props.title},
+//       releaseDate: {props.releaseDate},
+//       avgRating: {props.avgRating},
+//     }
+//   }
+function MovieCard(props) {
     return (
       <section>
         <a>
-          <img src={this.state.poster} />
+          <img className='card-poster' src={props.poster} />
         </a>
-        <p className='movie-card-title'>{this.state.title}</p>
-        <p className='release-date'>{this.state.releaseDate}</p>
-        <p className='avg-rating'>{this.state.avgRating}</p>
+        <p className='movie-card-title'>{props.title}</p>
+        <p className='release-date'>{props.releaseDate}</p>
+        <p className='avg-rating'>{props.avgRating}</p>
       </section>
     )
   }
-}
-
 export default MovieCard

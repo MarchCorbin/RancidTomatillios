@@ -2,22 +2,19 @@ import React from 'react'
 import './MovieCardContainer.css'
 import MovieCard from './MovieCard'
 
-function MovieCardContainer() {
+function MovieCardContainer(props) {
+  const movieCards = props.allMovies.map(movie => {
+    return <MovieCard 
+      id = {movie.id}
+      poster = {movie.poster_path}
+      title = {movie.title}
+      releaseDate = {movie.release_date}
+      avgRating = {movie.average_rating}
+    />
+  })
   return (
     <section className='movie-card-container'>
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
+      {movieCards}
     </section>
   )
 }

@@ -7,15 +7,27 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      currentUser: null
+      currentUser: null,
+      allMovies: []
+
     }
+  }
+
+  componentDidMount() {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+      .then(response => response.json())
+      .then(data => {this.setState({allMovies: data.movies})})
+        // (error) => {
+        //     this.setState({
+      
+      // .then(console.log(this.state.allMovies))
   }
 
   render() {
     return (
       <main>
         <Header currentUser={this.state.currentUser}/>
-        <MovieCardContainer />
+        <MovieCardContainer allMovies={this.state.allMovies} />
       </main>
     )
   }
