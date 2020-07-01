@@ -9,7 +9,7 @@ function Header(props) {
         <img className='icon' src={Icon} alt='animated tomatillo' />
       <h1>Rancid Tomatillos</h1> 
       </div>
-      {props.currentUser !== null && <p>Welcome, {props.currentUser.name}</p>}
+      {props.currentUser !== null ? <p>Welcome, {props.currentUser.name}</p> : <p>Welcome</p>}
       <button>LOGIN</button>
     </header>
     )
