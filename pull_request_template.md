@@ -15,9 +15,13 @@ Were there any challenges that arose while implementing this feature? If so, how
 
 
 Files modified:
-- [ ] index.html
-- [ ] styles.css
-- [ ] scripts.js
+- [ ] App.js
+- [ ] MovieCard.js
+- [ ] MovieCard.css
+- [ ] MovieCardContainer.js
+- [ ] MovieCardContainer.css
+- [ ] Header.js
+- [ ] Header.css
 
 Other files:
 
