@@ -1,17 +1,6 @@
 import React, { Component } from 'react'
 import './MovieCard.css'
 
-// class MovieCard extends Component{
-//   constructor() {
-//     super()
-//     this.state={
-//       id: {props.id},
-//       poster: {props.poster},
-//       title: {props.title},
-//       releaseDate: {props.releaseDate},
-//       avgRating: {props.avgRating},
-//     }
-//   }
 function MovieCard(props) {
     return (
       <section>

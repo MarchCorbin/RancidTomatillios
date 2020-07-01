@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-import Icon from './Assets/tomatillo.png'
+import Icon from '../Assets/tomatillo.png'
 
 function Header(props) {
   return (

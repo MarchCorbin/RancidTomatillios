@@ -1,6 +1,6 @@
 import React from 'react'
 import './MovieCardContainer.css'
-import MovieCard from './MovieCard'
+import MovieCard from '../MovieCard/MovieCard'
 
 function MovieCardContainer(props) {
   const movieCards = props.allMovies.map(movie => {
