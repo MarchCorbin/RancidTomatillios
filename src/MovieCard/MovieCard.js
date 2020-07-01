@@ -5,7 +5,10 @@ function MovieCard(props) {
     return (
       <section>
         <a>
-          <img className='card-poster' src={props.poster} />
+          <img 
+            className='card-poster' 
+            src={props.poster} 
+            alt={`Movie poster for ${props.title}`}/>
         </a>
         <p className='movie-card-title'>{props.title}</p>
         <p className='release-date'>{props.releaseDate}</p>
