@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Header from '../Header/Header'
 import './App.css';
 import MovieCardContainer from '../MovieCardContainer/MovieCardContainer';
+import Login from '../Login/Login.js'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       currentUser: null,
-      allMovies: []
+      allMovies: [],
+      isLoginOpen: false
 
     }
   }
@@ -23,10 +25,16 @@ class App extends Component {
       // .then(console.log(this.state.allMovies))
   }
 
+  openLogin = () => {
+    this.setState({isLoginOpen: true})
+
+  }
+
   render() {
     return (
       <main>
-        <Header currentUser={this.state.currentUser}/>
+        <Header openLogin={this.openLogin} currentUser={this.state.currentUser}/>
+        {this.state.isLoginOpen && <Login />}
         <MovieCardContainer allMovies={this.state.allMovies} />
       </main>
     )

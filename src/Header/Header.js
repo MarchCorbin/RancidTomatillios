@@ -2,6 +2,8 @@ import React from 'react'
 import './Header.css'
 import Icon from '../Assets/tomatillo.png'
 
+
+
 function Header(props) {
   return (
     <header>
@@ -10,7 +12,7 @@ function Header(props) {
       <h1>Rancid Tomatillos</h1> 
       </div>
       {props.currentUser !== null ? <p>Welcome, {props.currentUser.name}</p> : <p>Welcome</p>}
-      <button>LOGIN</button>
+      <button onClick={props.openLogin}>LOGIN</button>
     </header>
     )
 }
