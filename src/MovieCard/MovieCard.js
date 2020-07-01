@@ -3,7 +3,7 @@ import './MovieCard.css'
 
 function MovieCard(props) {
     return (
-      <section>
+      <section className='movie-card' key={props.id}>
         <a>
           <img 
             className='card-poster' 

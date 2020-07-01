@@ -13,7 +13,7 @@ function MovieCardContainer(props) {
     />
   })
   return (
-    <section className='movie-card-container'>
+    <section label='card-container' className='movie-card-container'>
       {movieCards}
     </section>
   )
