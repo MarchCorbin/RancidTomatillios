@@ -1,7 +1,6 @@
 import React from 'react'
 import './Login.css'
 
-
 class Login extends React.Component { 
   constructor(props) {
     super(props)
@@ -9,12 +8,26 @@ class Login extends React.Component {
       email: '',
       password: ''
     }
-    this.loginCredentials = props.loginCredentials
   }
 
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({[name]: value})
+  }
+
+  loginCredentials(e) {
+    e.preventDefault()
+    const postInput = {"email": this.state.email, "password": this.state.password}
+    console.log('I am working')
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/login', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(postInput)
+    })
+    .then(response => response.json())
+    .then(data => this.props.getCurrentUser(data))
   }
 
   render(){
@@ -36,7 +49,7 @@ class Login extends React.Component {
       />
       <button 
         className='login-button' 
-        onClick={event => this.loginCredentials(event, this.state)}>Login
+        onClick={e => this.loginCredentials(e)}>Login
       </button>
       </form>)
   }
