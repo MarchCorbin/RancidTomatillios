@@ -29,6 +29,7 @@ class App extends Component {
     this.setState({ currentUser: data.user})
   }
 
+  
   openLogin = () => {
     this.setState({isLoginOpen: true})
   }

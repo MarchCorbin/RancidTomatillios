@@ -11,7 +11,7 @@ function Header(props) {
         <img className='icon' src={Icon} alt='animated tomatillo' />
       <h1>Rancid Tomatillos</h1> 
       </div>
-      {props.currentUser !== null ? <p>Welcome, {props.currentUser.name}</p> : <p>Welcome</p>}
+      {props.currentUser !== null ? <h2 className="greeting-login">Welcome, {props.currentUser.name}!</h2> : <h2 className="greeting">Welcome!</h2>}
       <button onClick={props.openLogin}>LOGIN</button>
     </header>
     )
