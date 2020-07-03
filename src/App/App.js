@@ -29,16 +29,15 @@ class App extends Component {
     this.setState({ currentUser: data.user})
   }
 
-  
-  openLogin = () => {
-    this.setState({isLoginOpen: true})
+  toggleLoginDisplay = () => {
+    this.setState({isLoginOpen: !this.state.isLoginOpen})
   }
 
   render() {
     return (
       <main>
-        <Header openLogin={this.openLogin} currentUser={this.state.currentUser}/>
-        {this.state.isLoginOpen && <Login getCurrentUser={this.getCurrentUser} />}
+        <Header toggleLoginDisplay={this.toggleLoginDisplay} currentUser={this.state.currentUser}/>
+        {this.state.isLoginOpen && <Login getCurrentUser={this.getCurrentUser} toggleLoginDisplay={this.toggleLoginDisplay}/>}
         <MovieCardContainer allMovies={this.state.allMovies} />
       </main>
     )
