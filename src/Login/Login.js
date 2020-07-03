@@ -13,7 +13,7 @@ class Login extends React.Component {
 
   handleChange = (event) => {
     const { name, value } = event.target
-    this.setState({[name]: value})
+    this.setState({[name]: value, isValid: true})
   }
 
   hideForm = () => {
@@ -54,7 +54,7 @@ class Login extends React.Component {
   render(){
     return (
       <form>
-        {!this.state.isValid && <h3>Invalid login!  Try again.</h3>}
+        {!this.state.isValid ? <h3>Invalid login!  Try again.</h3> : <h3>Enter login information</h3>}
         <input 
           value={this.state.email}
           type='text'
