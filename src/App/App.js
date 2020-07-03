@@ -21,7 +21,7 @@ class App extends Component {
         if (res.ok) {
           return res.json()
         } else {
-          throw new Error({ ...res })
+          throw new Error('Something went wrong...')
         }
       })
       .then(data => {this.setState({allMovies: data.movies})})

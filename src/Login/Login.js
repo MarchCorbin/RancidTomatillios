@@ -6,7 +6,8 @@ class Login extends React.Component {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      isValid: true
     }
   }
 
@@ -20,6 +21,10 @@ class Login extends React.Component {
     this.props.toggleLoginDisplay()
   }
 
+  handleInvalidLogin() {
+    this.setState({ isValid: false })
+  }
+
   loginCredentials(e) {
     e.preventDefault()
     const postInput = {"email": this.state.email, "password": this.state.password}
@@ -31,14 +36,21 @@ class Login extends React.Component {
       },
       body: JSON.stringify(postInput)
     })
-    .then(response => response.json())
-    .then(data => this.props.getCurrentUser(data))
-    .then(this.hideForm)
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+          .then(data => this.props.getCurrentUser(data))
+          .then(this.hideForm)
+      } else {
+        this.handleInvalidLogin()
+      }
+    })    
   }
 
   render(){
     return (
       <form>
+        {!this.state.isValid && <h3>Invalid login!  Try again.</h3>}
         <input 
           value={this.state.email}
           type='text'
