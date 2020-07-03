@@ -19,10 +19,6 @@ class App extends Component {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
       .then(response => response.json())
       .then(data => {this.setState({allMovies: data.movies})})
-        // (error) => {
-        //     this.setState({
-      
-      // .then(console.log(this.state.allMovies))
   }
 
   getCurrentUser = (data) => {
