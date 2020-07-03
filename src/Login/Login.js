@@ -15,6 +15,11 @@ class Login extends React.Component {
     this.setState({[name]: value})
   }
 
+  hideForm = () => {
+    this.setState({ email: '', password: ''})
+    this.props.toggleLoginDisplay()
+  }
+
   loginCredentials(e) {
     e.preventDefault()
     const postInput = {"email": this.state.email, "password": this.state.password}
@@ -28,29 +33,31 @@ class Login extends React.Component {
     })
     .then(response => response.json())
     .then(data => this.props.getCurrentUser(data))
+    .then(this.hideForm)
   }
 
   render(){
-    return (<form>
-      <input 
-        value={this.state.email}
-        type='text'
-        name='email' 
-        placeholder='Email'
-        onChange={event => this.handleChange(event)}
-      />
-     
-      <input 
-        value={this.state.password}
-        type='text'
-        name='password' 
-        placeholder='Password'
-        onChange={event => this.handleChange(event)}
-      />
-      <button 
-        className='login-button' 
-        onClick={e => this.loginCredentials(e)}>Login
-      </button>
+    return (
+      <form>
+        <input 
+          value={this.state.email}
+          type='text'
+          name='email' 
+          placeholder='Email'
+          onChange={event => this.handleChange(event)}
+        />
+        <input 
+          value={this.state.password}
+          type='text'
+          name='password' 
+          placeholder='Password'
+          onChange={event => this.handleChange(event)}
+        />
+        <button 
+          className='login-button' 
+          onClick={e => this.loginCredentials(e)}>
+          Login
+        </button>
       </form>)
   }
 
