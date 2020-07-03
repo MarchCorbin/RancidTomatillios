@@ -35,3 +35,21 @@ header h1{
   height: 75%;
   width: 100%;
 }
+
+.greeting {
+  display: inline-block;
+  width: 15em;
+  position: absolute;
+  margin-left: 58.5%;
+  bottom: 90%;
+  font-size: 3em;
+}
+
+.greeting-login {
+  display: inline-block;
+  width: 15em;
+  position: fixed;
+  margin-left: 59%;
+  bottom: 90%;
+  font-size: 3em;
+}
