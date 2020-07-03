@@ -10,19 +10,22 @@ class App extends Component {
     this.state = {
       currentUser: null,
       allMovies: [],
-      isLoginOpen: false
-
+      isLoginOpen: false,
+      error: ''
     }
   }
 
   componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-      .then(response => response.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw new Error('Something went wrong...')
+        }
+      })
       .then(data => {this.setState({allMovies: data.movies})})
-        // (error) => {
-        //     this.setState({
-      
-      // .then(console.log(this.state.allMovies))
+      .catch(err => {this.setState({ error: 'There was an error!  Please try again.'})})
   }
 
   getCurrentUser = (data) => {
