@@ -55,7 +55,8 @@ class Login extends React.Component {
         />
         <button 
           className='login-button' 
-          onClick={e => this.loginCredentials(e)}>Login
+          onClick={e => this.loginCredentials(e)}>
+          Login
         </button>
       </form>)
   }
