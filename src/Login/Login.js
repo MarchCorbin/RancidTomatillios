@@ -27,8 +27,12 @@ class Login extends React.Component {
 
   loginCredentials(e) {
     e.preventDefault()
-    const postInput = {"email": this.state.email, "password": this.state.password}
-    console.log('I am working')
+    let postInput;
+    if (!this.state.email || !this.state.password) {
+      this.handleInvalidLogin()
+    } else {
+      postInput = {"email": this.state.email, "password": this.state.password}
+    }
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/login', {
       method: "POST",
       headers: {
