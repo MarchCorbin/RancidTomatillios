@@ -6,13 +6,14 @@ class Login extends React.Component {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      isValid: true
     }
   }
 
   handleChange = (event) => {
     const { name, value } = event.target
-    this.setState({[name]: value})
+    this.setState({[name]: value, isValid: true})
   }
 
   hideForm = () => {
@@ -20,10 +21,18 @@ class Login extends React.Component {
     this.props.toggleLoginDisplay()
   }
 
+  handleInvalidLogin() {
+    this.setState({ isValid: false })
+  }
+
   loginCredentials(e) {
     e.preventDefault()
-    const postInput = {"email": this.state.email, "password": this.state.password}
-    console.log('I am working')
+    let postInput;
+    if (!this.state.email || !this.state.password) {
+      this.handleInvalidLogin()
+    } else {
+      postInput = {"email": this.state.email, "password": this.state.password}
+    }
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/login', {
       method: "POST",
       headers: {
@@ -31,14 +40,21 @@ class Login extends React.Component {
       },
       body: JSON.stringify(postInput)
     })
-    .then(response => response.json())
-    .then(data => this.props.getCurrentUser(data))
-    .then(this.hideForm)
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+          .then(data => this.props.getCurrentUser(data))
+          .then(this.hideForm)
+      } else {
+        this.handleInvalidLogin()
+      }
+    })    
   }
 
   render(){
     return (
       <form>
+        {!this.state.isValid ? <h3>Invalid login!  Try again.</h3> : <h3>Enter login information</h3>}
         <input 
           value={this.state.email}
           type='text'
@@ -60,7 +76,6 @@ class Login extends React.Component {
         </button>
       </form>)
   }
-
 }
 
 export default Login
