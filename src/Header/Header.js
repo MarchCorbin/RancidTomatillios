@@ -15,7 +15,7 @@ function Header(props) {
         <h2 className="greeting-login">Welcome, {props.currentUser.name}!</h2> : 
         <h2 className="greeting">Welcome!</h2>
       }
-      <button className='login-button' onClick={props.loginLogout}>
+      <button className='login-button'onClick={props.loginLogout}>
         {props.currentUser ? 'LOGOUT': 'LOGIN'}
       </button>
     </header>
