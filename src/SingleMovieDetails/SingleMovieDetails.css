@@ -1,0 +1,47 @@
+.background-image {
+    height: 59.5em;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.poster {
+    height: auto;
+    width:auto;
+ 
+}
+
+.poster-section {
+     height: 460px;
+     width: 300px;
+     display: inline-block;
+     margin-top: 9%;
+     margin-left: 2%;
+}
+
+.movie-title {
+      background: transparent;
+      display: inline-block;
+      font-size: 120px;
+      color: white;
+}
+
+.tagline {
+    float: right;
+    margin-top: 5.6%;
+    font-size: 29px;
+}
+
+.main-details {
+height: 50px;
+width: 50px;
+display: inline-block
+}
+
+.misc-details {
+height: 50px;
+width: 50px;
+display: inline-block;
+}

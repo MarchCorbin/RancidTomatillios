@@ -11,7 +11,7 @@ function Header(props) {
         <img className='icon' src={Icon} alt='animated tomatillo' />
       <h1>Rancid Tomatillos</h1> 
       </div>
-      {props.currentUser !== null ? 
+        {props.currentUser !== null ? 
         <h2 className="greeting-login">Welcome, {props.currentUser.name}!</h2> : 
         <h2 className="greeting">Welcome!</h2>
       }
