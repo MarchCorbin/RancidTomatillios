@@ -22,6 +22,10 @@ Files modified:
 - [ ] MovieCardContainer.css
 - [ ] Header.js
 - [ ] Header.css
+- [ ] SingleMovieDetails.js
+- [ ] SingleMovieDetails.css
+- [ ] ErrorPage.js
+- [ ] ErrorPage.css
 
 Other files:
 

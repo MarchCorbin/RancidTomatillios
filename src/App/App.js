@@ -4,7 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
+import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 
