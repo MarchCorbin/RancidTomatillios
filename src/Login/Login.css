@@ -15,7 +15,7 @@ input {
     border: 3px solid darkolivegreen;
 }
 
-.login-button {
+.submit-login-button {
     width: 20em;
     align-self: center;
     height: 3em;

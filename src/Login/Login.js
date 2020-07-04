@@ -70,7 +70,7 @@ class Login extends React.Component {
           onChange={event => this.handleChange(event)}
         />
         <button 
-          className='login-button' 
+          className='submit-login-button' 
           onClick={e => this.loginCredentials(e)}>
           Login
         </button>

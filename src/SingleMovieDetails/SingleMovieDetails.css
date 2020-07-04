@@ -1,47 +1,77 @@
-.background-image {
-    height: 59.5em;
+.single-movie-view {
+    height: 100vh;
+    width: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    color: #FEFDD0;
+}
+
+.background-image {
+  opacity: 5%
 }
 
 .poster {
-    height: auto;
-    width:auto;
- 
+  width:100%;
+  padding: 5%;
 }
 
 .poster-section {
-     height: 460px;
-     width: 300px;
-     display: inline-block;
-     margin-top: 9%;
-     margin-left: 2%;
+  height: 85%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  background: rgba(50, 50, 50, 0.6);
+
+}
+
+.details-section {
+    display: flex;
+}
+
+.single-movie-header {
+  background: transparent;
+  /* display: grid; */
+  height: 15%;
+  width: 100%;
+  text-align: center;
+  background: rgba(50, 50, 50, 0.6);
+}
+
+body {
+  width: 100%;
 }
 
 .movie-title {
-      background: transparent;
-      display: inline-block;
-      font-size: 120px;
-      color: white;
+  font-size: 5em;
+  height: 70%;
+  /* height: 100%;
+  width: 70%; */
 }
 
 .tagline {
-    float: right;
-    margin-top: 5.6%;
-    font-size: 29px;
+  height: 30%;
+  font-size: 29px;
+  align-self: flex-end;
 }
 
 .main-details {
-height: 50px;
-width: 50px;
-display: inline-block
+  height: 100%;
+  width: 100%;
+  padding: 5% 10%;
+  font-size: 2em;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background: rgba(50, 50, 50, 0.6);
 }
 
 .misc-details {
-height: 50px;
-width: 50px;
-display: inline-block;
+padding: 5%;
+height: 100%;
+width: 100%;
+font-size: 1.5em;
+background: rgba(50, 50, 50, 0.6);
 }

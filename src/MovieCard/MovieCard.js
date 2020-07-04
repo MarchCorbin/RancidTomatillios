@@ -14,7 +14,6 @@ function MovieCard(props) {
             className='card-poster' 
             src={props.poster} 
             alt={`Movie poster for ${props.title}`}/>
-        
         <p className='movie-card-title'>{props.title}</p>
         <p className='release-date'>Release Date: {props.releaseDate}</p>
         <p className='avg-rating'>Average rating: {(props.avgRating).toFixed(1)}</p>
