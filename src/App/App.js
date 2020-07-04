@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
+import Header from '../Header/Header'
 
 class App extends Component {
  

@@ -1,4 +1,4 @@
-header {
+.main-header {
   background: linear-gradient(to top right, #33CC33 1%, #00FFCC 80%);  
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@ header {
   width: 100%
 }
 
-header button{
+.login-button{
   align-self: flex-end;
   background-color: #FEFDD0;
   border-radius: 3px;
@@ -18,7 +18,7 @@ header button{
   width: 10%
 }
 
-header h1{
+.main-header-title {
   height: 100%;
   align-self: center;
   color: #FEFDD0;
