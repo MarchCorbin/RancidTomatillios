@@ -12,10 +12,11 @@ describe('Login', () => {
   })
 
   it('should render a message, two inputs, and a button', () => {
-    const { getByText, getByPlaceholderText, getByRole } = render(<Login 
-      getCurrentUser={ jest.fn }
-      toggleLoginDisplay={ jest.fn }
-    />)
+    const { 
+      getByText, 
+      getByPlaceholderText, 
+      getByRole 
+    } = render(<Login />)
 
     const message = getByText('Enter login information')
     const emailInput = getByPlaceholderText('Email')
@@ -27,6 +28,8 @@ describe('Login', () => {
     expect(passwordInput).toBeInTheDocument()
     expect(button).toBeInTheDocument()
   })
+
+  //fire onchange of inputs to test invalid inputs
 
   it('should run loginCredentials on button click', () => {
     const mockUserFn = jest.fn()
@@ -41,6 +44,6 @@ describe('Login', () => {
     const button = getByRole('button')
     fireEvent.click(button)
 
-    expect().toBeCalledTimes(1)
+    expect(mockLoginCredentials).toBeCalledTimes(1)
   })
 })
