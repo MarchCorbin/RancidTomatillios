@@ -49,7 +49,7 @@ class Home extends Component {
 
   render() {
     return (
-      <main>
+      <main data-testid='home'>
         <Header 
           toggleLoginDisplay={this.toggleLoginDisplay} 
           loginLogout={this.loginLogout}
@@ -60,7 +60,6 @@ class Home extends Component {
           toggleLoginDisplay={this.toggleLoginDisplay} 
         />}
         <MovieCardContainer allMovies={this.state.allMovies} />
-        {/* <SingleMovieDetails /> */}
       </main>
     )
   }

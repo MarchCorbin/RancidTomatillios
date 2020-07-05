@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './Login.css'
 
 class Login extends React.Component { 
-  constructor(props) {
+  constructor({props}) {
     super(props)
     this.state = {
       email: '',
@@ -71,11 +72,18 @@ class Login extends React.Component {
         />
         <button 
           className='submit-login-button' 
-          onClick={e => this.loginCredentials(e)}>
+          onClick={e => this.loginCredentials(e)}
+        >
           Login
         </button>
-      </form>)
+      </form>
+    )
   }
 }
 
 export default Login
+
+Login.propTypes = {
+  getCurrentUser: PropTypes.func.isRequired,
+  toggleLoginDisplay: PropTypes.func.isRequired
+}

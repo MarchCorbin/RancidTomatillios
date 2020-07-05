@@ -4,8 +4,8 @@ import {withRouter} from 'react-router-dom'
 
 
 class SingleMovieDetails extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
         id: '',
         title: "",
@@ -35,15 +35,14 @@ class SingleMovieDetails extends React.Component {
         revenue: data.movie.revenue,
         runtime: data.movie.runtime,
         tagline: data.movie.tagline,
-        average_rating: data.movie.average_rating
+        average_rating: Number((data.movie.average_rating).toFixed(1))
     })
   }
 
-  componentDidMount(props) {
+  componentDidMount() {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(data => this.updateState(data));
-    console.log(this.data, 'this.state in movie details')
   }
 
   render() {

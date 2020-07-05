@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom' 
 
 describe('MovieCard', () => {
-  it('should render a poster', () => {
+  it.skip('should render a poster', () => {
     const { getByAltText } = render(
       <MovieCard 
         poster='http://pics.com'
@@ -16,7 +16,7 @@ describe('MovieCard', () => {
     expect(linkElement).toBeInTheDocument()
   });
 
-  it('should render a title', () => {
+  it.skip('should render a title', () => {
     const { getByText } = render(
       <MovieCard 
         poster='http://pics.com'
@@ -28,7 +28,7 @@ describe('MovieCard', () => {
     expect(linkElement).toBeInTheDocument()
   });
 
-  it('should render a release date', () => {
+  it.skip('should render a release date', () => {
     const { getByText } = render(
       <MovieCard 
         poster='http://pics.com'
@@ -40,7 +40,7 @@ describe('MovieCard', () => {
     expect(linkElement).toBeInTheDocument()
   });
 
-  it('should render a average rating', () => {
+  it.skip('should render a average rating', () => {
     const { getByText } = render(
       <MovieCard 
         poster='http://pics.com'
