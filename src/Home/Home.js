@@ -12,7 +12,8 @@ class Home extends Component {
       currentUser: null,
       allMovies: [],
       isLoginOpen: false,
-      error: ''
+      error: '',
+      currentUserRatings: []
     }
   }
 
@@ -47,6 +48,15 @@ class Home extends Component {
     this.toggleLoginDisplay()
   }
 
+  fetchUserRatings = (data) => {
+    let userId = data.user.id
+    const url=`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`
+    fetch(url)
+      .then(res => res.json())
+      .then(data => this.setState({ currentUserRatings: data.ratings }))
+      .catch(err => console.error(err.message))
+  }
+
   render() {
     return (
       <main data-testid='home'>
@@ -58,8 +68,12 @@ class Home extends Component {
         {this.state.isLoginOpen && <Login 
           getCurrentUser={this.getCurrentUser} 
           toggleLoginDisplay={this.toggleLoginDisplay} 
+          fetchUserRatings={this.fetchUserRatings}
         />}
-        <MovieCardContainer allMovies={this.state.allMovies} />
+        <MovieCardContainer 
+          allMovies={this.state.allMovies} 
+          ratings={this.state.currentUserRatings}
+        />
       </main>
     )
   }

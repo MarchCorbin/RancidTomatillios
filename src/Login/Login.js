@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import './Login.css'
 
 class Login extends React.Component { 
-  constructor({props}) {
+  constructor(props) {
     super(props)
     this.state = {
       email: '',
       password: '',
-      isValid: true
+      isValid: true,
     }
   }
 
@@ -26,14 +26,7 @@ class Login extends React.Component {
     this.setState({ isValid: false })
   }
 
-  loginCredentials(e) {
-    e.preventDefault()
-    let postInput;
-    if (!this.state.email || !this.state.password) {
-      this.handleInvalidLogin()
-    } else {
-      postInput = {"email": this.state.email, "password": this.state.password}
-    }
+  fetchUserData(postInput) {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/login', {
       method: "POST",
       headers: {
@@ -44,12 +37,35 @@ class Login extends React.Component {
     .then(res => {
       if (res.ok) {
         return res.json()
-          .then(data => this.props.getCurrentUser(data))
+          .then(data => {
+            this.props.getCurrentUser(data)
+            this.props.fetchUserRatings(data)
+            console.log(data)
+          })
           .then(this.hideForm)
       } else {
         this.handleInvalidLogin()
       }
     })    
+  }
+
+  // fetchUserRatings(data) {
+  //   let userId = data.user.id
+  //   const url=`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`
+  //   fetch(url)
+  //     .then(res => res.json())
+  //     .then(data => this.setState({ currentUserRatings: data}))
+  // }
+
+  loginCredentials(e) {
+    e.preventDefault()
+    let postInput;
+    if (!this.state.email || !this.state.password) {
+      this.handleInvalidLogin()
+    } else {
+      postInput = {"email": this.state.email, "password": this.state.password}
+    }
+    this.fetchUserData(postInput)
   }
 
   render(){
