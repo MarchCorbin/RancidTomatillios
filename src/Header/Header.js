@@ -6,14 +6,16 @@ import Icon from '../Assets/tomatillo.png'
 function Header({ currentUser, loginLogout }) {
   return (
     <header className='main-header'>
-      <div className='icon-holder'>
-        <img className='icon' src={Icon} alt='animated tomatillo' />
-      <h1 className='main-header-title'>Rancid Tomatillos</h1> 
-      </div>
+      <section className='header-text'>
+        <div className='icon-holder'>
+          <img className='icon' src={Icon} alt='animated tomatillo' />
+          <h1 className='main-header-title'>Rancid Tomatillos</h1> 
+        </div>
         {currentUser !== null ? 
-        <h2 className="greeting-login">Welcome, {currentUser.name}!</h2> : 
+        <h2 className="greeting">Welcome, {currentUser.name}!</h2> : 
         <h2 className="greeting">Welcome!</h2>
-      }
+        }
+      </section>
       <button className='login-button'onClick={loginLogout}>
         {currentUser ? 'LOGOUT': 'LOGIN'}
       </button>
