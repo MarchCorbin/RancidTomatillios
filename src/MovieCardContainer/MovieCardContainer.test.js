@@ -3,40 +3,46 @@ import MovieCardContainer from './MovieCardContainer'
 import MovieCard from '../MovieCard/MovieCard.js'
 import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom' 
+import  { BrowserRouter as Router } from 'react-router-dom'
 
 describe('MovieCardContainer', () => {
-  it.skip('should render cards to the page', () => {
-    const movie1 = 
-      <MovieCard 
-        id={1}
-        poster='http://pics.com'
-        title='Boondock Saints'
-        releaseDate='1999-11-19'
-        avgRating={7.8}
-      />
+  it('should render cards to the page', () => {
+    const movie1 = {
+       id:1,
+        poster_path: 'http://pics.com',
+        title:'Boondock Saints',
+        release_date: '1999-11-19',
+        average_rating: 7.8,
+    }
 
-    const movie2 = 
-      <MovieCard 
-        id={2}
-        poster='http://pics.com'
-        title='Mean Girls'
-        releaseDate='2008-01-24'
-        avgRating={5.8}
-      />
+    const movie2 = {
+        id:2,
+        poster_path: 'http://pics.com',
+        title:'Mean Girls',
+        release_date: '2008-01-24',
+        average_rating: 5.8,
+    }
 
-    const movie3 = 
-    <MovieCard 
-      id={3}
-      poster='http://pics.com'
-      title='Pokemon Movie'
-      releaseDate='2000-10-21'
-      avgRating={6.2}
-    />
+    const movie3 = {
+      id:3,
+      poster_path: 'http://pics.com',
+      title:'Pokemon Movie',
+      release_date: '2000-10-21',
+      average_rating:6.2,
+    }
 
-    const movieCards = [movie1, movie2, movie3]
-
-    const { getByText } = render(<MovieCardContainer allMovies={movieCards}/>)
-    // const linkElement = getByText(/ /i)
-    expect(movieCards).toBeInTheDocument()
+    const homeState = {
+      allMovies: [movie1, movie2, movie3]
+    }
+    const { getByText } = render(
+      <Router> 
+        <MovieCardContainer homeState = { homeState }/>
+      </Router>)
+    const movieTitle1 = getByText('Boondock Saints') 
+    const movieTitle2 = getByText('Mean Girls') 
+    const movieTitle3 = getByText('Pokemon Movie') 
+    expect(movieTitle1).toBeInTheDocument()
+    expect(movieTitle2).toBeInTheDocument()
+    expect(movieTitle3).toBeInTheDocument()
   })
 }) 
