@@ -4,8 +4,8 @@ import {withRouter} from 'react-router-dom'
 
 
 class SingleMovieDetails extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
         id: '',
         title: "",
@@ -35,40 +35,39 @@ class SingleMovieDetails extends React.Component {
         revenue: data.movie.revenue,
         runtime: data.movie.runtime,
         tagline: data.movie.tagline,
-        average_rating: data.movie.average_rating
+        average_rating: Number((data.movie.average_rating).toFixed(1))
     })
   }
 
-  componentDidMount(props) {
+  componentDidMount() {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(data => this.updateState(data));
-    console.log(this.data, 'this.state in movie details')
   }
 
   render() {
     return (
       <main
-      className="single-movie-view"
-       style={{ backgroundImage: `url(${this.state.backdrop_path})`}}>
-
+        className="single-movie-view"
+        style={{ backgroundImage: `url(${this.state.backdrop_path})`}}
+      >
         <header className="single-movie-header">
           <h1 className='movie-title'>{this.state.title}</h1>
-        <h4 className="tagline">{this.state.tagline}</h4>
+          <h4 className="tagline">{this.state.tagline}</h4>
         </header>
         <section className='poster-section'>
           <img className="poster" src={`${this.state.poster_path}`}/>
-          <div className='main-details'>
-            <div>Avg Rating: {this.state.average_rating}</div> 
-            <div>Synopsis: {this.state.overview}</div>
-          </div>
-          <div className="misc-details">
+          <section className='main-details'>
+            <p>Avg Rating: {this.state.average_rating}</p> 
+            <p>Synopsis: {this.state.overview}</p>
+          </section>
+          <section className="misc-details">
             <p>Runtime: {this.state.runtime}</p>
             <p>ReleaseDate: {this.state.release_date}</p>
             <p>Genres: {this.state.genres}</p>
             <p>Budget: {this.state.budget}</p>
             <p>Revenue: {this.state.revenue}</p>
-          </div>
+          </section>
         </section>  
       </main>
     )

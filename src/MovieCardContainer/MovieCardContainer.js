@@ -1,15 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './MovieCardContainer.css'
 import MovieCard from '../MovieCard/MovieCard'
 
-function MovieCardContainer(props) {
-  const movieCards = props.allMovies.map(movie => {
+function MovieCardContainer({ homeState }) {
+  const movieCards = homeState.allMovies.map(movie => {
     return <MovieCard 
       id = {movie.id}
       poster = {movie.poster_path}
       title = {movie.title}
       releaseDate = {movie.release_date}
-      avgRating = {movie.average_rating}
+      avgRating = {Number((movie.average_rating).toFixed(1))}
+      homeState = {homeState}
     />
   })
   return (
@@ -20,3 +22,7 @@ function MovieCardContainer(props) {
 }
 
 export default MovieCardContainer
+
+MovieCardContainer.propTypes = {
+  allMovies: PropTypes.array.isRequired
+}

@@ -1,12 +1,12 @@
 .single-movie-view {
-    height: 100vh;
-    width: 100%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: #FEFDD0;
+  height: 100vh;
+  width: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #FEFDD0;
 }
 
 .background-image {
@@ -28,12 +28,11 @@
 }
 
 .details-section {
-    display: flex;
+  display: flex;
 }
 
 .single-movie-header {
   background: transparent;
-  /* display: grid; */
   height: 15%;
   width: 100%;
   text-align: center;
@@ -45,10 +44,8 @@ body {
 }
 
 .movie-title {
-  font-size: 5em;
+  font-size: 4.5em;
   height: 70%;
-  /* height: 100%;
-  width: 70%; */
 }
 
 .tagline {
@@ -69,9 +66,9 @@ body {
 }
 
 .misc-details {
-padding: 5%;
-height: 100%;
-width: 100%;
-font-size: 1.5em;
-background: rgba(50, 50, 50, 0.6);
+  padding: 5%;
+  height: 100%;
+  width: 100%;
+  font-size: 1.5em;
+  background: rgba(50, 50, 50, 0.6);
 }

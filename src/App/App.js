@@ -1,35 +1,27 @@
-import React, { Component } from 'react';
-import Home from '../Home/Home.js'
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
-import Header from '../Header/Header'
+import Home from '../Home/Home.js'
 
-class App extends Component {
- 
-  
-
-  
-  render() {
-    return (
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path='/movies/:id'>
-              <SingleMovieDetails />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    )
-  }
+function App() {
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path='/movies/:id'>
+            <SingleMovieDetails />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  )
 }
 
 export default App;

@@ -1,18 +1,21 @@
 .movie-card {
+  box-shadow: 5px 5px 5px #0C5F2C;
   display: flex;
   flex-direction: column;
   height: auto;
-  margin-bottom: 5%;
   width: auto;
-
 }
 
 .card-poster {
   width: 100%
 }
 
-.movie-card-title, .release-date, .avg-rating {
+.movie-card-title, 
+.release-date, 
+.avg-rating, 
+.current-user-rating {
     background: linear-gradient(to right, #33cc33 8%, #00ffcc 99%);
     color: black;
     font-weight: 700;
+    padding: 0% 2%
 }
