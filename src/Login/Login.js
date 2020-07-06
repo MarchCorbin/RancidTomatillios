@@ -49,14 +49,6 @@ class Login extends React.Component {
     })    
   }
 
-  // fetchUserRatings(data) {
-  //   let userId = data.user.id
-  //   const url=`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`
-  //   fetch(url)
-  //     .then(res => res.json())
-  //     .then(data => this.setState({ currentUserRatings: data}))
-  // }
-
   loginCredentials(e) {
     e.preventDefault()
     let postInput;

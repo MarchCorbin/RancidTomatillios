@@ -48,12 +48,12 @@ class SingleMovieDetails extends React.Component {
   render() {
     return (
       <main
-      className="single-movie-view"
-       style={{ backgroundImage: `url(${this.state.backdrop_path})`}}>
-
+        className="single-movie-view"
+        style={{ backgroundImage: `url(${this.state.backdrop_path})`}}
+      >
         <header className="single-movie-header">
           <h1 className='movie-title'>{this.state.title}</h1>
-        <h4 className="tagline">{this.state.tagline}</h4>
+          <h4 className="tagline">{this.state.tagline}</h4>
         </header>
         <section className='poster-section'>
           <img className="poster" src={`${this.state.poster_path}`}/>
@@ -61,13 +61,13 @@ class SingleMovieDetails extends React.Component {
             <p>Avg Rating: {this.state.average_rating}</p> 
             <p>Synopsis: {this.state.overview}</p>
           </section>
-          <div className="misc-details">
+          <section className="misc-details">
             <p>Runtime: {this.state.runtime}</p>
             <p>ReleaseDate: {this.state.release_date}</p>
             <p>Genres: {this.state.genres}</p>
             <p>Budget: {this.state.budget}</p>
             <p>Revenue: {this.state.revenue}</p>
-          </div>
+          </section>
         </section>  
       </main>
     )

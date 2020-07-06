@@ -65,11 +65,13 @@ class Home extends Component {
           loginLogout={this.loginLogout}
           currentUser={this.state.currentUser}
         />
-        {this.state.isLoginOpen && <Login 
-          getCurrentUser={this.getCurrentUser} 
-          toggleLoginDisplay={this.toggleLoginDisplay} 
-          fetchUserRatings={this.fetchUserRatings}
-        />}
+        {this.state.isLoginOpen && 
+          <Login 
+            getCurrentUser={this.getCurrentUser} 
+            toggleLoginDisplay={this.toggleLoginDisplay} 
+            fetchUserRatings={this.fetchUserRatings}
+          />
+        }
         <MovieCardContainer 
           homeState={this.state}
         />
