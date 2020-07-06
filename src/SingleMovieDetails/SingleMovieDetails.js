@@ -57,10 +57,10 @@ class SingleMovieDetails extends React.Component {
         </header>
         <section className='poster-section'>
           <img className="poster" src={`${this.state.poster_path}`}/>
-          <div className='main-details'>
-            <div>Avg Rating: {this.state.average_rating}</div> 
-            <div>Synopsis: {this.state.overview}</div>
-          </div>
+          <section className='main-details'>
+            <p>Avg Rating: {this.state.average_rating}</p> 
+            <p>Synopsis: {this.state.overview}</p>
+          </section>
           <div className="misc-details">
             <p>Runtime: {this.state.runtime}</p>
             <p>ReleaseDate: {this.state.release_date}</p>

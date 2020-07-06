@@ -50,10 +50,10 @@ class Home extends Component {
 
   fetchUserRatings = (data) => {
     let userId = data.user.id
-    const url=`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`
-    fetch(url)
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
       .then(res => res.json())
       .then(data => this.setState({ currentUserRatings: data.ratings }))
+      // .then(<SingleMovieDetails prophere />)
       .catch(err => console.error(err.message))
   }
 
@@ -71,8 +71,7 @@ class Home extends Component {
           fetchUserRatings={this.fetchUserRatings}
         />}
         <MovieCardContainer 
-          allMovies={this.state.allMovies} 
-          ratings={this.state.currentUserRatings}
+          homeState={this.state}
         />
       </main>
     )
