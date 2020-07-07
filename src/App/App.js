@@ -6,16 +6,20 @@ import {
 } from "react-router-dom";
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
-
+// Layout component ?
+// store currentUser in state
 function App() {
   return (
     <Router>
       <div>
         <Switch>
           <Route exact path="/">
+            {/* <Layout> */}
             <Home />
+            {/* </Layout> */}
           </Route>
           <Route path='/movies/:id'>
+
             <SingleMovieDetails />
           </Route>
         </Switch>
