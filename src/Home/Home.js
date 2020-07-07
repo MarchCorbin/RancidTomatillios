@@ -44,8 +44,8 @@ class Home extends Component {
   
   loginLogout = () => {
     this.state.currentUser !== null ? 
-    this.logOutUser() :
-    this.toggleLoginDisplay()
+      this.logOutUser() :
+      this.toggleLoginDisplay()
   }
 
   fetchUserRatings = (data) => {
@@ -61,7 +61,7 @@ class Home extends Component {
     return (
       <main data-testid='home'>
         <Header 
-          toggleLoginDisplay={this.toggleLoginDisplay} 
+          // toggleLoginDisplay={this.toggleLoginDisplay} 
           loginLogout={this.loginLogout}
           currentUser={this.state.currentUser}
         />

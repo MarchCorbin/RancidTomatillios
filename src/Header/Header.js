@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './Header.css'
 import Icon from '../Assets/tomatillo.png'
 
+//make class component and add isLoginOpen to state
 function Header({ currentUser, loginLogout }) {
   return (
     <header className='main-header'>

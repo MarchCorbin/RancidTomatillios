@@ -31,19 +31,5 @@ describe('Login', () => {
 
   //fire onchange of inputs to test invalid inputs
 
-  it.skip('should run loginCredentials on button click', () => {
-    const mockUserFn = jest.fn()
-    const mockToggleFn = jest.fn()
-    const { getByRole } = render(<Login 
-      getCurrentUser={ mockUserFn }
-      toggleLoginDisplay={ mockToggleFn }
-    />)
-
-    const mockLoginCredentials = jest.fn(mockUserFn, mockToggleFn)
-
-    const button = getByRole('button')
-    fireEvent.click(button)
-
-    expect(mockLoginCredentials).toBeCalledTimes(1)
-  })
+  
 })
