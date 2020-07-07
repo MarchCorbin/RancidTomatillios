@@ -13,8 +13,12 @@ class Ratings extends React.Component {
   }
  
   onStarClick(nextValue, prevValue, name) {
-    this.setState({rating: nextValue});
-    this.postUserRating(nextValue)
+    if(this.state.rating === null){
+      this.setState({rating: nextValue});
+      this.postUserRating(nextValue)
+    } else {
+      console.log('we made it')
+    }
   }
 
   postUserRating(rating) {

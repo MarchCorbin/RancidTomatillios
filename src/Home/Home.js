@@ -60,7 +60,8 @@ class Home extends Component {
           />
         }
         <MovieCardContainer 
-          homeState={this.state}
+          currentUser={this.props.currentUser}
+          allMovies={this.state.allMovies}
         />
       </main>
     )

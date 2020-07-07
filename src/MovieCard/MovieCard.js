@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './MovieCard.css'
 import {Link} from 'react-router-dom'
 
-function MovieCard({ id, poster, title, releaseDate, avgRating, homeState }) {
+function MovieCard({ id, poster, title, releaseDate, avgRating, currentUser }) {
     return (
       <Link to ={
         {
@@ -20,7 +20,7 @@ function MovieCard({ id, poster, title, releaseDate, avgRating, homeState }) {
           <p className='movie-card-title'>{title}</p>
           <p className='release-date'>Release Date: {releaseDate}</p>
           <p className='avg-rating'>Average Rating: {avgRating}</p>
-          {homeState.currentUser && <p className='current-user-rating'>Your Rating: </p>}
+          {currentUser && <p className='current-user-rating'>Your Rating: </p>}
         </section>
       </Link>
     )
