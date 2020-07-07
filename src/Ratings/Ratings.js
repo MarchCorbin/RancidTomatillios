@@ -14,11 +14,12 @@ class Ratings extends React.Component {
  
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
+    this.postUserRating(nextValue)
   }
 
-  postUserRating() {
+  postUserRating(rating) {
     const postObj = {
-       "movie_id": this.props.movieId, "rating": this.state.rating
+       "movie_id":this.props.movieId, "rating":rating
     }
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${this.props.currentUser.id}/ratings`, {
       method: 'POST',
