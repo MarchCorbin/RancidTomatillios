@@ -1,6 +1,7 @@
 import React from 'react'
 import './SingleMovieDetails.css' 
 import {withRouter} from 'react-router-dom'
+import Ratings from '../Ratings/Ratings'
 
 
 class SingleMovieDetails extends React.Component {
@@ -58,6 +59,7 @@ class SingleMovieDetails extends React.Component {
         <section className='poster-section'>
           <img className="poster" src={`${this.state.poster_path}`}/>
           <section className='main-details'>
+           <div><Ratings /></div>
             <p>Avg Rating: {this.state.average_rating}</p> 
             <p>Synopsis: {this.state.overview}</p>
           </section>

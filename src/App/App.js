@@ -4,8 +4,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
+import Ratings from '../Ratings/Ratings'
 
 function App() {
   return (
