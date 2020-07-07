@@ -19,7 +19,7 @@ class SingleMovieDetails extends React.Component {
         revenue: 0,
         runtime: '',
         tagline: '',
-        average_rating: 0
+        average_rating: 0,
     }
   }
 
@@ -40,6 +40,7 @@ class SingleMovieDetails extends React.Component {
     })
   }
 
+
   componentDidMount() {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.match.params.id}`)
     .then(response => response.json())
@@ -57,9 +58,14 @@ class SingleMovieDetails extends React.Component {
           <h4 className="tagline">{this.state.tagline}</h4>
         </header>
         <section className='poster-section'>
-          <img className="poster" src={`${this.state.poster_path}`}/>
+          <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
-           <div><Ratings /></div>
+           <div>
+             <Ratings 
+              currentUser={this.props.currentUser}
+              movieId={this.state.id}
+             />
+           </div>
             <p>Avg Rating: {this.state.average_rating}</p> 
             <p>Synopsis: {this.state.overview}</p>
           </section>

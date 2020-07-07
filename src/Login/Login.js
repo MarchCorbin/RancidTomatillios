@@ -50,7 +50,7 @@ class Login extends React.Component {
     })    
   }
 
-  loginCredentials(e) {
+  loginCredentials = (e) => {
     e.preventDefault()
     let postInput;
     if (!this.state.email || !this.state.password) {

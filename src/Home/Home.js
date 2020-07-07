@@ -9,11 +9,8 @@ class Home extends Component {
   constructor() {
     super()
     this.state = {
-      currentUser: null,
       allMovies: [],
       isLoginOpen: false,
-      error: '',
-      currentUserRatings: []
     }
   }
 
@@ -30,32 +27,22 @@ class Home extends Component {
       .catch(err => {this.setState({ error: 'There was an error!  Please try again.'})})
   }
 
-  getCurrentUser = (data) => {
-    this.setState({ currentUser: data.user})
-  }
+ 
+ loginLogout = () => {
+   this.props.currentUser !== null ?
+    this.props.logOutUser() :
+    this.toggleLoginDisplay()
+ }
 
-  logOutUser = () => {
-    this.setState({ currentUser: null })
-  }
+  
   
   toggleLoginDisplay = () => {
     this.setState({isLoginOpen: !this.state.isLoginOpen})
   }
   
-  loginLogout = () => {
-    this.state.currentUser !== null ? 
-      this.logOutUser() :
-      this.toggleLoginDisplay()
-  }
+  
 
-  fetchUserRatings = (data) => {
-    let userId = data.user.id
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
-      .then(res => res.json())
-      .then(data => this.setState({ currentUserRatings: data.ratings }))
-      // .then(<SingleMovieDetails prophere />)
-      .catch(err => console.error(err.message))
-  }
+  
 
   render() {
     return (
@@ -63,13 +50,13 @@ class Home extends Component {
         <Header 
           // toggleLoginDisplay={this.toggleLoginDisplay} 
           loginLogout={this.loginLogout}
-          currentUser={this.state.currentUser}
+          currentUser={this.props.currentUser}
         />
         {this.state.isLoginOpen && 
           <Login 
-            getCurrentUser={this.getCurrentUser} 
+            getCurrentUser={this.props.getCurrentUser} 
             toggleLoginDisplay={this.toggleLoginDisplay} 
-            fetchUserRatings={this.fetchUserRatings}
+            fetchUserRatings={this.props.fetchUserRatings}
           />
         }
         <MovieCardContainer 
