@@ -4,20 +4,23 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
-import Ratings from '../Ratings/Ratings'
 
+// Layout component ?
+// store currentUser in state
 function App() {
   return (
     <Router>
       <div>
         <Switch>
           <Route exact path="/">
+            {/* <Layout> */}
             <Home />
+            {/* </Layout> */}
           </Route>
           <Route path='/movies/:id'>
+
             <SingleMovieDetails />
           </Route>
         </Switch>

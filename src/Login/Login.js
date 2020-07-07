@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import LoginForm from '../LoginForm/LoginForm'
 import './Login.css'
 
 class Login extends React.Component { 
@@ -60,31 +61,15 @@ class Login extends React.Component {
     this.fetchUserData(postInput)
   }
 
-  render(){
+  render() {
     return (
-      <form>
-        {!this.state.isValid ? <h3>Invalid login!  Try again.</h3> : <h3>Enter login information</h3>}
-        <input 
-          value={this.state.email}
-          type='text'
-          name='email' 
-          placeholder='Email'
-          onChange={event => this.handleChange(event)}
-        />
-        <input 
-          value={this.state.password}
-          type='text'
-          name='password' 
-          placeholder='Password'
-          onChange={event => this.handleChange(event)}
-        />
-        <button 
-          className='submit-login-button' 
-          onClick={e => this.loginCredentials(e)}
-        >
-          Login
-        </button>
-      </form>
+      <LoginForm 
+        handleSubmit={this.loginCredentials}
+        isValid={this.state.isValid}
+        email={this.state.email}
+        password={this.state.password}
+        handleChange={this.handleChange}
+      />
     )
   }
 }
