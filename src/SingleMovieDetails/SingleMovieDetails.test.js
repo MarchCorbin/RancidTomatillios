@@ -1,5 +1,7 @@
 import React from 'react'
 import SingleMovieDetails from './SingleMovieDetails'
+import { render } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
 
 describe('SingleMovieDetails', () => {
 
@@ -7,9 +9,15 @@ describe('SingleMovieDetails', () => {
     expect(true).toEqual(true)
   })
 
-  it('should render text on the page', () => {
-    const { getByText } = render(
-      <SingleMovieDetails />
+  it('should render a header and a movie details section on the page', () => {
+    const { getByTestId } = render(
+      <BrowserRouter>
+        <SingleMovieDetails />
+      </BrowserRouter>
     )
+    const header = getByTestId('header')
+    const movieDetails = getByTestId('movie-details')
+    expect(header).toBeInTheDocument()
+    expect(movieDetails).toBeInTheDocument()
   })
 })

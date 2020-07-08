@@ -53,11 +53,11 @@ class SingleMovieDetails extends React.Component {
         className="single-movie-view"
         style={{ backgroundImage: `url(${this.state.backdrop_path})`}}
       >
-        <header className="single-movie-header">
+        <header className="single-movie-header" data-testid='header'>
           <h1 className='movie-title'>{this.state.title}</h1>
           <h4 className="tagline">{this.state.tagline}</h4>
         </header>
-        <section className='poster-section'>
+        <section className='poster-section' data-testid='movie-details'>
           <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
            <div>

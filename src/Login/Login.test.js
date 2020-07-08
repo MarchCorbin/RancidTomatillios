@@ -27,8 +27,4 @@ describe('Login', () => {
     expect(passwordInput).toBeInTheDocument()
     expect(button).toBeInTheDocument()
   })
-
-  //fire onchange of inputs to test invalid inputs
-
-  
 })
