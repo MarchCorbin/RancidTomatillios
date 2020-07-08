@@ -14,6 +14,7 @@ function MovieCardContainer({ currentUser, allMovies }) {
       currentUser = {currentUser}
     />
   })
+
   return (
     <section label='card-container' className='movie-card-container'>
       {movieCards}

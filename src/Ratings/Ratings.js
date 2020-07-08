@@ -1,9 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
 
-
- 
 class Ratings extends React.Component {
   constructor() {
     super();
@@ -22,18 +19,14 @@ class Ratings extends React.Component {
   }
 
   postUserRating(rating) {
-    const postObj = {
-       "movie_id":this.props.movieId, "rating":rating
-    }
+    const postObj = { "movie_id":this.props.movieId, "rating":rating }
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${this.props.currentUser.id}/ratings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(postObj)
-    }
-    
-    )
+    })
   }
  
   render() {
@@ -51,10 +44,5 @@ class Ratings extends React.Component {
     );
   }
 }
- 
-// ReactDOM.render(
-//   <SingleMovieDetails />, 
-//   document.getElementById('app')
-// );
 
 export default Ratings
