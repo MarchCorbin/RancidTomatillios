@@ -13,11 +13,11 @@ function Header({ currentUser, loginLogout }) {
           <h1 className='main-header-title'>Rancid Tomatillos</h1> 
         </div>
         {currentUser !== null ? 
-        <h2 className="greeting">Welcome, {currentUser.name}!</h2> : 
-        <h2 className="greeting">Welcome!</h2>
+          <h2 className="greeting">Welcome, {currentUser.name}!</h2> : 
+          <h2 className="greeting">Welcome!</h2>
         }
       </section>
-      <button className='login-button'onClick={loginLogout}>
+      <button className='login-button' onClick={loginLogout}>
         {currentUser ? 'LOGOUT': 'LOGIN'}
       </button>
     </header>
