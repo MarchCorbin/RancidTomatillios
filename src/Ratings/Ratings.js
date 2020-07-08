@@ -1,15 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
 
-
- 
 class Ratings extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      rating: null
-    };
+      rating: (props.userRating ? props.userRating.rating : props.userRating)
+    }
   }
  
   onStarClick(nextValue, prevValue, name) {
@@ -22,39 +19,31 @@ class Ratings extends React.Component {
   }
 
   postUserRating(rating) {
-    const postObj = {
-       "movie_id":this.props.movieId, "rating":rating
-    }
+    const postObj = { "movie_id":this.props.movieId, "rating":rating }
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${this.props.currentUser.id}/ratings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(postObj)
-    }
-    
-    )
+    })
   }
  
   render() {
-    const { rating } = this.state;
+    console.log(this.props)
     return (                
       <div>
-        <h2>Rating from state: {rating}</h2>
+        <h2>Your Rating: {this.state.rating}</h2>
         <StarRatingComponent 
           name="rate1" 
           starCount={10}
-          value={rating}
+          // value={this.state.rating ? this.state.rating.rating : this.state.rating}
+          value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
         />
       </div>
     );
   }
 }
- 
-// ReactDOM.render(
-//   <SingleMovieDetails />, 
-//   document.getElementById('app')
-// );
 
 export default Ratings

@@ -18,13 +18,6 @@ describe('Header', () => {
     expect(linkElement).toBeInTheDocument()
   });
 
-  // it('Should throw error if current user has no name property', () => {
-  //   const currentUser={firstName: 'Bob'}
-  //   const { getByText } = render(<Header currentUser={ currentUser }/>)
-  //   const linkElement = getByText(/Welcome, Bob/i)
-  //   expect(linkElement).toBeInTheDocument()
-  // });
-
   it('Should render a generic greeting if there is no current user', () => {
     const currentUser=null
     const { getByText } = render(<Header currentUser={ currentUser }/>)
@@ -35,7 +28,20 @@ describe('Header', () => {
   it('Should render a login button', () => {
     const currentUser=null
     const { getByText } = render(<Header currentUser={ currentUser }/>)
-    const linkElement = getByText(/Login/i)
-    expect(linkElement).toBeInTheDocument()
+    const button = getByText(/Login/i)
+    expect(button).toBeInTheDocument()
   });
+
+  it('Should show a login page on button click', () => {
+    const mockLoginLogout = jest.fn()
+    const { getByRole } = render(
+      <Header 
+        currentUser={null}
+        loginLogout={mockLoginLogout}
+      />
+    )
+    const button = getByRole('button')
+    fireEvent.click(button)
+    expect(mockLoginLogout).toBeCalledTimes(1)
+  })
 })

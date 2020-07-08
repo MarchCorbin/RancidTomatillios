@@ -1,9 +1,8 @@
 import React from 'react';
 import Login from './Login';
-import { loginCredentials } from './Login'
 
 import '@testing-library/jest-dom'
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 describe('Login', () => {
 
@@ -28,8 +27,4 @@ describe('Login', () => {
     expect(passwordInput).toBeInTheDocument()
     expect(button).toBeInTheDocument()
   })
-
-  //fire onchange of inputs to test invalid inputs
-
-  
 })
