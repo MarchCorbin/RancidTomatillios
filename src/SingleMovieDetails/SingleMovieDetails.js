@@ -74,10 +74,13 @@ class SingleMovieDetails extends React.Component {
           }
 
            <div>
+           {this.props.currentUser && 
              <Ratings 
               currentUser={this.props.currentUser}
               movieId={this.state.id}
+              userRating={this.state.user_rating}
              />
+           }
            </div>
             <p>Avg Rating: {this.state.average_rating}</p> 
             <p>Synopsis: {this.state.overview}</p>
