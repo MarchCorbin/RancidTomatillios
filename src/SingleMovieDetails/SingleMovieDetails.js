@@ -20,10 +20,13 @@ class SingleMovieDetails extends React.Component {
         runtime: '',
         tagline: '',
         average_rating: 0,
+        user_rating: null
     }
   }
 
   updateState = data => {
+    // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
+    
     this.setState({
         id: data.movie.id,
         title: data.movie.title,
@@ -36,18 +39,21 @@ class SingleMovieDetails extends React.Component {
         revenue: data.movie.revenue,
         runtime: data.movie.runtime,
         tagline: data.movie.tagline,
-        average_rating: Number((data.movie.average_rating).toFixed(1))
+        average_rating: Number((data.movie.average_rating).toFixed(1)),
+        user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
     })
   }
 
-
-  componentDidMount() {
+  componentDidMount = () => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.match.params.id}`)
     .then(response => response.json())
-    .then(data => this.updateState(data));
+    .then(data => this.updateState(data))
+    // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))
   }
 
   render() {
+    // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
+
     return (
       <main
         className="single-movie-view"
@@ -60,6 +66,13 @@ class SingleMovieDetails extends React.Component {
         <section className='poster-section' data-testid='movie-details'>
           <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
+          
+          {this.props.currentUser &&
+            (this.state.user_rating ? 
+            <p className='current-user-rating'>Your Rating: {this.state.user_rating.rating}</p> : 
+            <p className='current-user-rating'>Your Rating: -</p>)
+          }
+
            <div>
              <Ratings 
               currentUser={this.props.currentUser}

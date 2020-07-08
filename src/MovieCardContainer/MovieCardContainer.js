@@ -6,7 +6,6 @@ import MovieCard from '../MovieCard/MovieCard'
 function MovieCardContainer({ currentUser, allMovies, currentUserRatings }) {
   const movieCards = allMovies.map(movie => {
     let userRating = currentUserRatings.find(rating => rating.movie_id === movie.id)
-    console.log(userRating, 'USER RATING!')
     return (<MovieCard 
       key = {movie}
       id = {movie.id}

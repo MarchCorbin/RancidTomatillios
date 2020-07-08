@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
   Route
 } from "react-router-dom";
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
@@ -38,26 +37,21 @@ class App extends React.Component {
   render () {
     return (
       <Router>
-        <div>
-          <Switch>
-            <Route exact path="/">
-              {/* <Layout> */}
-              <Home 
-                currentUser={this.state.currentUser} 
-                currentUserRatings={this.state.currentUserRatings}
-                getCurrentUser={this.getCurrentUser}
-                logOutUser={this.logOutUser}
-                fetchUserRatings={this.fetchUserRatings}
-              />
-              {/* </Layout> */}
-            </Route>
-            <Route path='/movies/:id'>
-              <SingleMovieDetails 
-                currentUser={this.state.currentUser} 
-              />
-            </Route>
-          </Switch>
-        </div>
+        <Route exact path="/">
+          <Home 
+            currentUser={this.state.currentUser} 
+            currentUserRatings={this.state.currentUserRatings}
+            getCurrentUser={this.getCurrentUser}
+            logOutUser={this.logOutUser}
+            fetchUserRatings={this.fetchUserRatings}
+          />
+        </Route>
+        <Route path='/movies/:id'>
+          <SingleMovieDetails 
+            currentUser={this.state.currentUser} 
+            currentUserRatings={this.state.currentUserRatings}
+          />
+        </Route>
       </Router>
     )
   }

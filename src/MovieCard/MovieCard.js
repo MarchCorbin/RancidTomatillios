@@ -4,19 +4,17 @@ import './MovieCard.css'
 import {Link} from 'react-router-dom'
 
 function MovieCard(
-    { 
-      key,
-      id, 
-      poster, 
-      title, 
-      releaseDate, 
-      avgRating, 
-      currentUser, 
-      currentUserRating 
-    }
-  ) {
+  { 
+    key,
+    id, 
+    poster, 
+    title, 
+    releaseDate, 
+    avgRating, 
+    currentUser, 
+    currentUserRating 
+  }) {
     return (
-      
       <Link 
         to ={{pathname: `/movies/${id}`, state:{ id: id }}}
       >
