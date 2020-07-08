@@ -53,6 +53,7 @@ class Home extends Component {
         <MovieCardContainer 
           currentUser={this.props.currentUser}
           allMovies={this.state.allMovies}
+          currentUserRatings={this.props.currentUserRatings}
         />
       </main>
     )
