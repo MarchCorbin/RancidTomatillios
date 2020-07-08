@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import './MovieCardContainer.css'
 import MovieCard from '../MovieCard/MovieCard'
 
-function MovieCardContainer({ homeState }) {
-  const movieCards = homeState.allMovies.map(movie => {
+function MovieCardContainer({ currentUser, allMovies }) {
+  const movieCards = allMovies.map(movie => {
     return <MovieCard 
       id = {movie.id}
       poster = {movie.poster_path}
       title = {movie.title}
       releaseDate = {movie.release_date}
       avgRating = {Number((movie.average_rating).toFixed(1))}
-      homeState = {homeState}
+      currentUser = {currentUser}
     />
   })
   return (
