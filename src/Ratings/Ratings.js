@@ -1,20 +1,33 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
+import { fetchUserRatingsData } from '../fetchCalls/fetchCalls';
 
 class Ratings extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props, 'Props')
     this.state = {
-      rating: (props.userRating ? props.userRating.rating : props.userRating)
+      rating: null
     }
   }
  
+  componentDidUpdate = (prevProps) => {
+    if (this.props.userRating !== prevProps.userRating) {
+      if (!this.props.userRating) {
+        this.setState({ rating: null })
+      } else {
+        this.setState({ rating:  this.props.userRating.rating })
+      }
+    }
+  } 
+
   onStarClick(nextValue, prevValue, name) {
-    if(this.state.rating === null){
+    if (this.state.rating === null){
       this.setState({rating: nextValue});
+      console.log('Inside IF')
       this.postUserRating(nextValue)
     } else {
-      console.log('we made it')
+      this.updateRating(prevValue, nextValue)
     }
   }
 
@@ -27,10 +40,20 @@ class Ratings extends React.Component {
       },
       body: JSON.stringify(postObj)
     })
+    .then(console.log('POST'))
+  }
+
+  updateRating = async (prevRating, newRating) => {
+    // if (this.props.currentUser !== null) {
+      await this.props.deleteRating(prevRating)
+  
+      await this.postUserRating(newRating)
+  
+      await this.props.fetchUserRatings()
+    // }
   }
  
   render() {
-    console.log(this.props)
     return (                
       <div>
         <h2>Your Rating: {this.state.rating}</h2>

@@ -2,7 +2,7 @@ import React from 'react'
 import './SingleMovieDetails.css' 
 import {withRouter} from 'react-router-dom'
 import Ratings from '../Ratings/Ratings'
-
+import { fetchSingleMovie, fetchUserRatingsData } from '../fetchCalls/fetchCalls'
 
 class SingleMovieDetails extends React.Component {
   constructor() {
@@ -26,7 +26,6 @@ class SingleMovieDetails extends React.Component {
 
   updateState = data => {
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
-    
     this.setState({
         id: data.movie.id,
         title: data.movie.title,
@@ -44,16 +43,27 @@ class SingleMovieDetails extends React.Component {
     })
   }
 
+  deleteRating(ratingID) {
+    if (this.props.currentUser) {
+      const userID = this.props.currentUser.id
+      const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
+      fetch(url, {
+          method: 'DELETE'
+        }
+      )
+      .then(res => console.log(res, 'DELETE'))
+    }
+  }
+
   componentDidMount = () => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.match.params.id}`)
-    .then(response => response.json())
-    .then(data => this.updateState(data))
+    const movieID = this.props.match.params.id
+    fetchSingleMovie(movieID)
+      .then(data => this.updateState(data))
     // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))
   }
 
   render() {
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
-
     return (
       <main
         className="single-movie-view"
@@ -67,11 +77,11 @@ class SingleMovieDetails extends React.Component {
           <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
           
-          {this.props.currentUser &&
+          {/* {this.props.currentUser &&
             (this.state.user_rating ? 
             <p className='current-user-rating'>Your Rating: {this.state.user_rating.rating}</p> : 
             <p className='current-user-rating'>Your Rating: -</p>)
-          }
+          } */}
 
            <div>
            {this.props.currentUser && 
@@ -79,6 +89,8 @@ class SingleMovieDetails extends React.Component {
               currentUser={this.props.currentUser}
               movieId={this.state.id}
               userRating={this.state.user_rating}
+              deleteRating={this.deleteRating}
+              fetchUserRatings={this.props.fetchUserRatings}
              />
            }
            </div>
