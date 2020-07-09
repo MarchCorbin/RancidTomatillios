@@ -1,10 +1,12 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
+import ErrorPage from '../ErrorPage/ErrorPage'
 
 class App extends React.Component {
   constructor() {
@@ -23,7 +25,7 @@ class App extends React.Component {
       .then(data => this.setState({
         currentUserRatings: data.ratings
       }))
-      .catch(err => console.error(err.message))
+      .catch(err => <Redirect to='/error' />)
   }
  
   getCurrentUser = (data) => {
@@ -33,6 +35,8 @@ class App extends React.Component {
   logOutUser = () => {
     this.setState({ currentUser: null })
   }
+
+
 
   render () {
     return (
@@ -51,6 +55,9 @@ class App extends React.Component {
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
           />
+        </Route>
+        <Route path='/error'>
+          <ErrorPage />
         </Route>
       </Router>
     )

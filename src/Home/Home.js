@@ -3,6 +3,8 @@ import Header from '../Header/Header'
 import './Home.css';
 import MovieCardContainer from '../MovieCardContainer/MovieCardContainer';
 import Login from '../Login/Login.js'
+import ErrorPage from '../ErrorPage/ErrorPage'
+import { Redirect } from 'react-router-dom';
 
 class Home extends Component {
   constructor() {
@@ -23,7 +25,7 @@ class Home extends Component {
         }
       })
       .then(data => {this.setState({allMovies: data.movies})})
-      .catch(err => {this.setState({ error: 'There was an error!  Please try again.'})})
+      .catch(err => <Redirect to= '/error' />)
   }
 
   loginLogout = () => {
