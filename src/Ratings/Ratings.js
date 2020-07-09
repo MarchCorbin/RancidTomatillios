@@ -21,7 +21,7 @@ class Ratings extends React.Component {
     }
   }
 
-  postUserRating(rating) {
+  postUserRating = (rating) => {
     const postObj = {
        "movie_id":this.props.movieId, "rating":rating
     }
