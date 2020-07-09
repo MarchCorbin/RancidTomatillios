@@ -17,6 +17,7 @@ class App extends React.Component {
       error: '',
       currentUserRatings: []
     }
+    console.log(this.state)
   }
 
   fetchUserRatings = (data) => {

@@ -5,8 +5,9 @@ import Ratings from '../Ratings/Ratings'
 import { fetchSingleMovie, fetchUserRatingsData } from '../fetchCalls/fetchCalls'
 
 class SingleMovieDetails extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    console.log(this.props, 'Single Movie props')
     this.state = {
         id: '',
         title: "",
@@ -25,8 +26,10 @@ class SingleMovieDetails extends React.Component {
   }
 
   updateState = data => {
+    console.log('Props in update state', this.props)
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
-    this.setState({
+    this.setState(
+      {
         id: data.movie.id,
         title: data.movie.title,
         poster_path: data.movie.poster_path,
@@ -40,23 +43,25 @@ class SingleMovieDetails extends React.Component {
         tagline: data.movie.tagline,
         average_rating: Number((data.movie.average_rating).toFixed(1)),
         user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
-    })
+      }
+    )
   }
 
-  deleteRating(ratingID) {
+  deleteRating = (ratingID) => {    
+    console.log(this.props, 'DELETE')
+
     if (this.props.currentUser) {
       const userID = this.props.currentUser.id
       const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
-      fetch(url, {
-          method: 'DELETE'
-        }
-      )
+      fetch(url, { method: 'DELETE' })
       .then(res => console.log(res, 'DELETE'))
     }
   }
 
   componentDidMount = () => {
+
     const movieID = this.props.match.params.id
+    console.log(movieID)
     fetchSingleMovie(movieID)
       .then(data => this.updateState(data))
     // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))

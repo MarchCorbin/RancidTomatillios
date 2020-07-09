@@ -24,9 +24,9 @@ class Ratings extends React.Component {
   onStarClick(nextValue, prevValue, name) {
     if (this.state.rating === null){
       this.setState({rating: nextValue});
-      console.log('Inside IF')
       this.postUserRating(nextValue)
     } else {
+      this.setState({rating: nextValue});
       this.updateRating(prevValue, nextValue)
     }
   }
@@ -44,13 +44,10 @@ class Ratings extends React.Component {
   }
 
   updateRating = async (prevRating, newRating) => {
-    // if (this.props.currentUser !== null) {
-      await this.props.deleteRating(prevRating)
-  
+    const data = {user: this.props.currentUser}
+      this.props.deleteRating(this.props.userRating.id)
       await this.postUserRating(newRating)
-  
-      await this.props.fetchUserRatings()
-    // }
+      await this.props.fetchUserRatings(data)
   }
  
   render() {
