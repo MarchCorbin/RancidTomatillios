@@ -31,12 +31,11 @@ describe('MovieCardContainer', () => {
       average_rating:6.2,
     }
 
-    const homeState = {
-      allMovies: [movie1, movie2, movie3]
-    }
+    let allMovies = [movie1, movie2, movie3]
+    
     const { getByText } = render(
       <Router> 
-        <MovieCardContainer homeState = { homeState }/>
+        <MovieCardContainer allMovies = { allMovies }/>
       </Router>)
     const movieTitle1 = getByText('Boondock Saints') 
     const movieTitle2 = getByText('Mean Girls') 

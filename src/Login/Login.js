@@ -41,7 +41,6 @@ class Login extends React.Component {
           .then(data => {
             this.props.getCurrentUser(data)
             this.props.fetchUserRatings(data)
-            console.log(data)
           })
           .then(this.hideForm)
       } else {

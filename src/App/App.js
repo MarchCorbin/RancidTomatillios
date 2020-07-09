@@ -1,14 +1,13 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
+import ErrorPage from '../ErrorPage/ErrorPage'
 
-// Layout component ?
-// store currentUser in state
 class App extends React.Component {
   constructor() {
     super()
@@ -19,17 +18,17 @@ class App extends React.Component {
     }
   }
 
-fetchUserRatings = (data) => {
-  let userId = data.user.id
-  fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
-    .then(res => res.json())
-    .then(data => this.setState({
-      currentUserRatings: data.ratings
-    }))
-    .catch(err => console.error(err.message))
-}
+  fetchUserRatings = (data) => {
+    let userId = data.user.id
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
+      .then(res => res.json())
+      .then(data => this.setState({
+        currentUserRatings: data.ratings
+      }))
+      .catch(err => <Redirect to='/error' />)
+  }
  
- getCurrentUser = (data) => {
+  getCurrentUser = (data) => {
     this.setState({ currentUser: data.user})
   }
 
@@ -37,32 +36,32 @@ fetchUserRatings = (data) => {
     this.setState({ currentUser: null })
   }
 
- render () {
-   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            {/* <Layout> */}
-            <Home 
-              currentUser={this.state.currentUser} 
-              currentUserRatings={this.state.currentUserRatings}
-              getCurrentUser={this.getCurrentUser}
-              logOutUser={this.logOutUser}
-              fetchUserRatings={this.fetchUserRatings}
-            />
-            {/* </Layout> */}
-          </Route>
-          <Route path='/movies/:id'>
-            <SingleMovieDetails 
-              currentUser={this.state.currentUser} 
-            />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-   )
-}
+
+
+  render () {
+    return (
+      <Router>
+        <Route exact path="/">
+          <Home 
+            currentUser={this.state.currentUser} 
+            currentUserRatings={this.state.currentUserRatings}
+            getCurrentUser={this.getCurrentUser}
+            logOutUser={this.logOutUser}
+            fetchUserRatings={this.fetchUserRatings}
+          />
+        </Route>
+        <Route path='/movies/:id'>
+          <SingleMovieDetails 
+            currentUser={this.state.currentUser} 
+            currentUserRatings={this.state.currentUserRatings}
+          />
+        </Route>
+        <Route path='/error'>
+          <ErrorPage />
+        </Route>
+      </Router>
+    )
+  }
 }
 
 export default App;

@@ -3,7 +3,6 @@ import Header from '../Header/Header'
 import './Home.css';
 import MovieCardContainer from '../MovieCardContainer/MovieCardContainer';
 import Login from '../Login/Login.js'
-import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails';
 
 class Home extends Component {
   constructor() {
@@ -27,28 +26,20 @@ class Home extends Component {
       .catch(err => {this.setState({ error: 'There was an error!  Please try again.'})})
   }
 
- 
- loginLogout = () => {
-   this.props.currentUser !== null ?
-    this.props.logOutUser() :
-    this.toggleLoginDisplay()
- }
+  loginLogout = () => {
+    this.props.currentUser !== null ?
+      this.props.logOutUser() :
+      this.toggleLoginDisplay()
+  }
 
-  
-  
   toggleLoginDisplay = () => {
     this.setState({isLoginOpen: !this.state.isLoginOpen})
   }
-  
-  
-
-  
 
   render() {
     return (
       <main data-testid='home'>
         <Header 
-          // toggleLoginDisplay={this.toggleLoginDisplay} 
           loginLogout={this.loginLogout}
           currentUser={this.props.currentUser}
         />
@@ -62,6 +53,7 @@ class Home extends Component {
         <MovieCardContainer 
           currentUser={this.props.currentUser}
           allMovies={this.state.allMovies}
+          currentUserRatings={this.props.currentUserRatings}
         />
       </main>
     )
