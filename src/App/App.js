@@ -51,7 +51,7 @@ class App extends React.Component {
           />
         </Route>
         <Route path='/movies/:id'>
-          <SingleMovieDetails 
+           <SingleMovieDetails 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
           />

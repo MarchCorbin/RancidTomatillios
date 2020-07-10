@@ -44,7 +44,7 @@ class SingleMovieDetails extends React.Component {
     })
   }
 
-  componentDidMount = () => {
+            componentDidMount = () => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.match.params.id}`)
     .then(response => response.json())
     .then(data => this.updateState(data))
