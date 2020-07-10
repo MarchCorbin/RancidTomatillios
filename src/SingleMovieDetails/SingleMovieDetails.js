@@ -48,24 +48,31 @@ class SingleMovieDetails extends React.Component {
   }
 
   deleteRating = (ratingID) => {    
-    console.log(this.props, 'DELETE')
-
-    if (this.props.currentUser) {
+    // if (this.props.currentUser) {
       const userID = this.props.currentUser.id
       const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
-      fetch(url, { method: 'DELETE' })
-      .then(res => console.log(res, 'DELETE'))
-    }
+      return fetch(url, { method: 'DELETE' })
+    // }
   }
 
-  componentDidMount = () => {
-
+  reFetchUpdate = () => {
     const movieID = this.props.match.params.id
     console.log(movieID)
     fetchSingleMovie(movieID)
       .then(data => this.updateState(data))
+  }
+
+  componentDidMount = () => {
+    this.reFetchUpdate()
     // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))
   }
+
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   if(this.props !== prevProps) {
+
+  //     this.reFetchUpdate()
+  //   }
+  // }
 
   render() {
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
@@ -91,6 +98,7 @@ class SingleMovieDetails extends React.Component {
            <div>
            {this.props.currentUser && 
              <Ratings 
+              updateSingleMovieState={this.updateState}
               currentUser={this.props.currentUser}
               movieId={this.state.id}
               userRating={this.state.user_rating}

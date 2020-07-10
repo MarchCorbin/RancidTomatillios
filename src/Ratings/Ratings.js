@@ -26,12 +26,15 @@ class Ratings extends React.Component {
       this.setState({rating: nextValue});
       this.postUserRating(nextValue)
     } else {
+      // this.props.updateSingleMovieState()
       this.setState({rating: nextValue});
       this.updateRating(prevValue, nextValue)
+      console.log(this.props.movieId)
     }
   }
 
   postUserRating(rating) {
+
     const postObj = { "movie_id":this.props.movieId, "rating":rating }
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${this.props.currentUser.id}/ratings`, {
       method: 'POST',
@@ -45,9 +48,9 @@ class Ratings extends React.Component {
 
   updateRating = async (prevRating, newRating) => {
     const data = {user: this.props.currentUser}
-      this.props.deleteRating(this.props.userRating.id)
-      await this.postUserRating(newRating)
-      await this.props.fetchUserRatings(data)
+    await this.props.deleteRating(this.props.userRating.id)
+    await this.postUserRating(newRating)
+    await this.props.fetchUserRatings(data)
   }
  
   render() {
