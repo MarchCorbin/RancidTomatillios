@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
-    "eslint": "^7.4.0",
     "eslint-plugin-react": "^7.20.3"
   }
 }

@@ -2,11 +2,12 @@ import React from 'react'
 import './SingleMovieDetails.css' 
 import {withRouter} from 'react-router-dom'
 import Ratings from '../Ratings/Ratings'
-
+import { fetchSingleMovie, fetchUserRatingsData } from '../fetchCalls/fetchCalls'
 
 class SingleMovieDetails extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    console.log(this.props, 'Single Movie props')
     this.state = {
         id: '',
         title: "",
@@ -25,9 +26,16 @@ class SingleMovieDetails extends React.Component {
   }
 
   updateState = data => {
+    console.log('3) SingleMovieDetails - updateState() - this.props.currentUserRatings: ', this.props.currentUserRatings)
+    let movieRating = this.props.currentUserRatings.find(rating => {
+     return rating.movie_id === data.movie.id
+    })
+
+    console.log("find movie rating: ", movieRating)
+
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
-    
-    this.setState({
+    this.setState(
+      {
         id: data.movie.id,
         title: data.movie.title,
         poster_path: data.movie.poster_path,
@@ -41,19 +49,41 @@ class SingleMovieDetails extends React.Component {
         tagline: data.movie.tagline,
         average_rating: Number((data.movie.average_rating).toFixed(1)),
         user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
-    })
+      }
+    )
   }
 
-            componentDidMount = () => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.match.params.id}`)
-    .then(response => response.json())
-    .then(data => this.updateState(data))
+  deleteRating = async (ratingID) => {    
+    console.log("deleteRating ID", ratingID)
+    // if (this.props.currentUser) {
+      const userID = this.props.currentUser.id
+      const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
+      return await fetch(url, { method: 'DELETE' })
+    // }
+  }
+
+  reFetchUpdate = () => {
+    const movieID = this.props.match.params.id
+    console.log(movieID)
+    fetchSingleMovie(movieID)
+      .then(data => this.updateState(data))
+  }
+
+  componentDidMount = () => {
+    this.reFetchUpdate()
     // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))
   }
 
-  render() {
-    // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
+  componentDidUpdate = (prevProps, prevState) => {
+    if(this.props.currentUserRatings !== prevProps.currentUserRatings) {
+      this.reFetchUpdate()
+    }
+  }
 
+  render() {
+    console.log("SingleMovieDetails: this.props.currentUserRatings", this.props.currentUserRatings)
+    console.log("SingleMovieDetails: this.state.user_rating", this.state.user_rating)
+    // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
     return (
       <main
         className="single-movie-view"
@@ -67,18 +97,22 @@ class SingleMovieDetails extends React.Component {
           <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
           
-          {this.props.currentUser &&
+          {/* {this.props.currentUser &&
             (this.state.user_rating ? 
             <p className='current-user-rating'>Your Rating: {this.state.user_rating.rating}</p> : 
             <p className='current-user-rating'>Your Rating: -</p>)
-          }
+          } */}
 
            <div>
            {this.props.currentUser && 
              <Ratings 
+              reFetchUpdate={this.reFetchUpdate}
+              updateSingleMovieState={this.updateState}
               currentUser={this.props.currentUser}
               movieId={this.state.id}
               userRating={this.state.user_rating}
+              deleteRating={this.deleteRating}
+              fetchUserRatings={this.props.fetchUserRatings}
              />
            }
            </div>

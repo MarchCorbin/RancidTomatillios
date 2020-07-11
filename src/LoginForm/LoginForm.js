@@ -1,9 +1,10 @@
 import React from 'react'
+import './LoginForm.css'
 
 function LoginForm(props) {
   return (
-    <form onSubmit={e => props.handleSubmit(e)}>
-      {!props.isValid ? <h3>Invalid login!  Try again.</h3> : <h3>Enter login information</h3>}
+    <form onSubmit={e => props.handleSubmit(e)} className='login-form'>
+      {!props.isValid ? <h3 className='invalid-login-msg'>Invalid login!  Try again.</h3> : <h3>Enter login information</h3>}
       <label htmlFor='emailInput'>Email</label>
       <input 
         id='emailInput'

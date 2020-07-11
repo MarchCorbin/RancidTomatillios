@@ -18,7 +18,7 @@ function MovieCard(
       <Link 
         to ={{pathname: `/movies/${id}`, state:{ id: id }}}
       >
-        <section className='movie-card' key={key}>
+        <section data-testid="movie-card" className='movie-card' key={key}>
           <img 
             className='card-poster' 
             src={poster} 

@@ -6,7 +6,7 @@ import Icon from '../Assets/tomatillo.png'
 //make class component and add isLoginOpen to state
 function Header({ currentUser, loginLogout }) {
   return (
-    <header className='main-header'>
+    <header className='main-header' data-testid='header'>
       <section className='header-text'>
         <div className='icon-holder'>
           <img className='icon' src={Icon} alt='animated tomatillo' />

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import LoginForm from '../LoginForm/LoginForm'
 import './Login.css'
+import { fetchSingleUserData } from '../fetchCalls/fetchCalls'
 
 class Login extends React.Component { 
   constructor(props) {
@@ -28,13 +29,7 @@ class Login extends React.Component {
   }
 
   fetchUserData(postInput) {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/login', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(postInput)
-    })
+    fetchSingleUserData(postInput)
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -42,7 +37,7 @@ class Login extends React.Component {
             this.props.getCurrentUser(data)
             this.props.fetchUserRatings(data)
           })
-          .then(this.hideForm)
+          .then(this.hideForm())
       } else {
         this.handleInvalidLogin()
       }

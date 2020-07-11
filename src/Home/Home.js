@@ -5,10 +5,11 @@ import MovieCardContainer from '../MovieCardContainer/MovieCardContainer';
 import Login from '../Login/Login.js'
 import ErrorPage from '../ErrorPage/ErrorPage'
 import { Redirect } from 'react-router-dom';
+import { fetchAllMovies } from '../fetchCalls/fetchCalls'
 
 class Home extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       allMovies: [],
       isLoginOpen: false,
@@ -16,14 +17,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error('Something went wrong...')
-        }
-      })
+    console.log(this.props, 'HOME')
+    fetchAllMovies()
       .then(data => {this.setState({allMovies: data.movies})})
       .catch(err => <Redirect to= '/error' />)
   }

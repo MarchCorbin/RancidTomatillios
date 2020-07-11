@@ -19,7 +19,7 @@ function MovieCardContainer({ currentUser, allMovies, currentUserRatings }) {
   })
 
   return (
-    <section label='card-container' className='movie-card-container'>
+    <section data-testid='card-container' className='movie-card-container'>
       {movieCards}
     </section>
   )

@@ -62,9 +62,8 @@ body {
   overflow-x: hidden;
   overflow-y: visible;
   background: rgba(50, 50, 50, 0.6);
-  font-family: 'Lato',
-   sans-serif;
-  font-size: 30px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em;
   font-weight: 400;
 }
 
@@ -73,7 +72,7 @@ body {
   padding: 5%;
   height: 100%;
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.3em;
   background: rgba(50, 50, 50, 0.6);
   font-family: 'Lato',
    sans-serif;

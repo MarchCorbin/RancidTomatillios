@@ -7,6 +7,7 @@ import {
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
 import ErrorPage from '../ErrorPage/ErrorPage'
+import { fetchUserRatingsData } from '../fetchCalls/fetchCalls'
 
 class App extends React.Component {
   constructor() {
@@ -16,15 +17,18 @@ class App extends React.Component {
       error: '',
       currentUserRatings: []
     }
+    console.log(this.state)
   }
 
-  fetchUserRatings = (data) => {
+  fetchUserRatings = async (data) => {
     let userId = data.user.id
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
-      .then(res => res.json())
-      .then(data => this.setState({
-        currentUserRatings: data.ratings
-      }))
+    return await fetchUserRatingsData(userId)
+      .then(data => {
+        console.log("1) fetchUserRatings BEFORE🔫: ", this.state.currentUserRatings)
+        this.setState({currentUserRatings: data.ratings})
+        console.log("2) fetchUserRatings AFTER🔥: ", data.ratings)
+        return data
+      })
       .catch(err => <Redirect to='/error' />)
   }
  
@@ -35,8 +39,6 @@ class App extends React.Component {
   logOutUser = () => {
     this.setState({ currentUser: null })
   }
-
-
 
   render () {
     return (
@@ -54,6 +56,7 @@ class App extends React.Component {
            <SingleMovieDetails 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
+            fetchUserRatings={this.fetchUserRatings}
           />
         </Route>
         <Route path='/error'>
