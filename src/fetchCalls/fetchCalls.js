@@ -1,5 +1,5 @@
-export const fetchUserRatingsData = (userId) => {
-  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
+export const fetchUserRatingsData = async (userId) => {
+  return await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`)
   .then(res => res.json())
 }
 

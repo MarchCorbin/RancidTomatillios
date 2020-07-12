@@ -26,7 +26,13 @@ class SingleMovieDetails extends React.Component {
   }
 
   updateState = data => {
-    console.log('Props in update state', this.props)
+    console.log('3) SingleMovieDetails - updateState() - this.props.currentUserRatings: ', this.props.currentUserRatings)
+    let movieRating = this.props.currentUserRatings.find(rating => {
+     return rating.movie_id === data.movie.id
+    })
+
+    console.log("find movie rating: ", movieRating)
+
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
     this.setState(
       {
@@ -47,11 +53,12 @@ class SingleMovieDetails extends React.Component {
     )
   }
 
-  deleteRating = (ratingID) => {    
+  deleteRating = async (ratingID) => {    
+    console.log("deleteRating ID", ratingID)
     // if (this.props.currentUser) {
       const userID = this.props.currentUser.id
       const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
-      return fetch(url, { method: 'DELETE' })
+      return await fetch(url, { method: 'DELETE' })
     // }
   }
 
@@ -67,14 +74,15 @@ class SingleMovieDetails extends React.Component {
     // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))
   }
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   if(this.props !== prevProps) {
-
-  //     this.reFetchUpdate()
-  //   }
-  // }
+  componentDidUpdate = (prevProps, prevState) => {
+    if(this.props.currentUserRatings !== prevProps.currentUserRatings) {
+      this.reFetchUpdate()
+    }
+  }
 
   render() {
+    console.log("SingleMovieDetails: this.props.currentUserRatings", this.props.currentUserRatings)
+    console.log("SingleMovieDetails: this.state.user_rating", this.state.user_rating)
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
     return (
       <main
@@ -98,6 +106,7 @@ class SingleMovieDetails extends React.Component {
            <div>
            {this.props.currentUser && 
              <Ratings 
+              reFetchUpdate={this.reFetchUpdate}
               updateSingleMovieState={this.updateState}
               currentUser={this.props.currentUser}
               movieId={this.state.id}

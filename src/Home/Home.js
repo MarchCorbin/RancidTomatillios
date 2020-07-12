@@ -8,8 +8,8 @@ import { Redirect } from 'react-router-dom';
 import { fetchAllMovies } from '../fetchCalls/fetchCalls'
 
 class Home extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       allMovies: [],
       isLoginOpen: false,

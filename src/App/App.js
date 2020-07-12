@@ -20,13 +20,15 @@ class App extends React.Component {
     console.log(this.state)
   }
 
-  fetchUserRatings = (data) => {
+  fetchUserRatings = async (data) => {
     let userId = data.user.id
-    fetchUserRatingsData(userId)
-      .then(data => this.setState({
-        currentUserRatings: data.ratings
-      }))
-      .then(console.log('GET'))
+    return await fetchUserRatingsData(userId)
+      .then(data => {
+        console.log("1) fetchUserRatings BEFORE🔫: ", this.state.currentUserRatings)
+        this.setState({currentUserRatings: data.ratings})
+        console.log("2) fetchUserRatings AFTER🔥: ", data.ratings)
+        return data
+      })
       .catch(err => <Redirect to='/error' />)
   }
  
@@ -51,7 +53,7 @@ class App extends React.Component {
           />
         </Route>
         <Route path='/movies/:id'>
-          <SingleMovieDetails 
+           <SingleMovieDetails 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
             fetchUserRatings={this.fetchUserRatings}

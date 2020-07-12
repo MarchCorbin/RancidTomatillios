@@ -7,11 +7,14 @@ class Ratings extends React.Component {
     super(props);
     console.log(props, 'Props')
     this.state = {
-      rating: null
+      rating: null,
+
     }
   }
  
   componentDidUpdate = (prevProps) => {
+    console.log("6) Ratings - this.props.userRating: ", this.props.userRating)
+    console.log("6) Ratings - prevProps.userRating: ", prevProps.userRating)
     if (this.props.userRating !== prevProps.userRating) {
       if (!this.props.userRating) {
         this.setState({ rating: null })
@@ -22,37 +25,43 @@ class Ratings extends React.Component {
   } 
 
   onStarClick(nextValue, prevValue, name) {
+    console.log(prevValue, 'PREVIOUS VALUE')
+    console.log(nextValue, 'NEXTVALUE')
     if (this.state.rating === null){
       this.setState({rating: nextValue});
       this.postUserRating(nextValue)
     } else {
-      // this.props.updateSingleMovieState()
       this.setState({rating: nextValue});
       this.updateRating(prevValue, nextValue)
-      console.log(this.props.movieId)
     }
   }
 
-  postUserRating(rating) {
-
+  async postUserRating(rating) {
+    console.log("4) postUserRating - rating :", rating)
     const postObj = { "movie_id":this.props.movieId, "rating":rating }
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${this.props.currentUser.id}/ratings`, {
+    return await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${this.props.currentUser.id}/ratings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      },
+      }, 
       body: JSON.stringify(postObj)
     })
-    .then(console.log('POST'))
+    .then(res => {
+      console.log(res, 'postUserRESPONSE')
+      return res
+    })
   }
 
   updateRating = async (prevRating, newRating) => {
-    const data = {user: this.props.currentUser}
-    await this.props.deleteRating(this.props.userRating.id)
+    console.log("5) Ratings - user rating: ", this.props.userRating)
+    const data = { user: this.props.currentUser }
+    if(this.props.userRating){
+      await this.props.deleteRating(this.props.userRating.id)
+    }
     await this.postUserRating(newRating)
     await this.props.fetchUserRatings(data)
   }
- 
+
   render() {
     return (                
       <div>

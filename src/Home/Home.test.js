@@ -1,21 +1,24 @@
 import React from 'react'
 import Home from './Home'
-import { render, fireEvent, within } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import '@testing-library/jest-dom' 
 
-describe('Home', () => {
-  it('should be true', () => {
-    expect(true).toEqual(true)
-  })
 
-  it('should render a <Header />', () => {
-    const { getByText } = render(
+
+
+describe('Home', () => {
+//   it('should be true', () => {
+//     expect(true).toEqual(true)
+//   })
+
+  it('should render a <Header /> and a <MovieCardContainer />', () => {
+    const { getByText, getByTestId } = render(
       <Home 
         currentUser={null}
-      />
-    )
-    const home = getByText('Rancid Tomatillos')
-    expect(home).toBeInTheDocument()
+      />)
+    const header = getByText('Rancid Tomatillos')
+    expect(header).toBeInTheDocument()
+    const movieCardContainer = getByTestId('card-container')
+    expect(movieCardContainer).toBeInTheDocument()
   })
-
 })
