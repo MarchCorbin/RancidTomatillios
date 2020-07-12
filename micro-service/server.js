@@ -8,7 +8,7 @@ app.locals.title = 'Rancid Tomatillos API'
 app.use(express.json())
 
 app.locals.comments = []
-app.locals.favorites = []
+app.locals.favorites = [{movieID: 111}, {movieID: 222}, {movieID: 333}]
 
 app.get('/', (request, response) => {
   response.send('Rancid Tomatillos API')
@@ -51,4 +51,16 @@ app.post('/api/v1/favorites', (request, response) => {
 
 app.get('/api/v1/favorites', (request, response) => {
   response.status(200).json(app.locals.favorites)
+})
+
+app.delete('/api/v1/favorites/:movieID', (request, response) => {
+  const movieID = Number(request.params.movieID)
+
+  let foundMovie = app.locals.favorites.find(movie => movie.movieID === movieID)
+
+  const index = app.locals.favorites.indexOf(foundMovie)
+
+  app.locals.favorites.splice(index, 1)
+
+  response.json({ message: `Movie with an id number of ${foundMovie.movieID} has been deleted.`})
 })
