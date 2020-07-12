@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Header.css'
 import Icon from '../Assets/tomatillo.png'
+import { Link } from 'react-router-dom'
 
 //make class component and add isLoginOpen to state
 function Header({ currentUser, loginLogout }) {
@@ -17,9 +18,11 @@ function Header({ currentUser, loginLogout }) {
           <h2 className="greeting">Welcome!</h2>
         }
       </section>
-      <button className='login-button' onClick={loginLogout}>
-        {currentUser ? 'LOGOUT': 'LOGIN'}
-      </button>
+      <Link to='/login'>
+        <button className='login-button' onClick={loginLogout}>
+          {currentUser ? 'LOGOUT': 'LOGIN'}
+        </button>
+      </Link>
     </header>
     )
 }

@@ -21,7 +21,7 @@ class Login extends React.Component {
 
   hideForm = () => {
     this.setState({ email: '', password: ''})
-    this.props.toggleLoginDisplay()
+    // this.props.toggleLoginDisplay()
   }
 
   handleInvalidLogin() {
@@ -53,11 +53,13 @@ class Login extends React.Component {
       postInput = {"email": this.state.email, "password": this.state.password}
     }
     this.fetchUserData(postInput)
+
   }
 
   render() {
     return (
       <LoginForm 
+        currentUser={this.props.currentUser}
         handleSubmit={this.loginCredentials}
         isValid={this.state.isValid}
         email={this.state.email}

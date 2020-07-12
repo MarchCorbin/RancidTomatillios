@@ -2,12 +2,15 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect
+  Redirect,
+  Switch
 } from "react-router-dom";
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
 import ErrorPage from '../ErrorPage/ErrorPage'
 import { fetchUserRatingsData } from '../fetchCalls/fetchCalls'
+import Login from '../Login/Login'
+
 
 class App extends React.Component {
   constructor() {
@@ -41,19 +44,40 @@ class App extends React.Component {
   }
 
   render () {
+    console.log('RERENDER APP')
+
     return (
       <Router>
+      <Switch>
         <Route exact path="/">
+          {(this.state.currentUser !== null) && <Redirect to='/dashboard' />}
           <Home 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
-            getCurrentUser={this.getCurrentUser}
+            // getCurrentUser={this.getCurrentUser}
             logOutUser={this.logOutUser}
+            // fetchUserRatings={this.fetchUserRatings}
+          />
+        </Route>
+        <Route path='/dashboard'>
+          <Home 
+            currentUser={this.state.currentUser} 
+            currentUserRatings={this.state.currentUserRatings}
+            // getCurrentUser={this.getCurrentUser}
+            logOutUser={this.logOutUser}
+            // fetchUserRatings={this.fetchUserRatings}
+          />
+        </Route>
+        <Route path='/login'>
+          <Login 
+            getCurrentUser={this.getCurrentUser} 
+            // toggleLoginDisplay={this.toggleLoginDisplay} 
             fetchUserRatings={this.fetchUserRatings}
+            currentUser={this.state.currentUser}
           />
         </Route>
         <Route path='/movies/:id'>
-           <SingleMovieDetails 
+          <SingleMovieDetails 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
             fetchUserRatings={this.fetchUserRatings}
@@ -62,6 +86,7 @@ class App extends React.Component {
         <Route path='/error'>
           <ErrorPage />
         </Route>
+      </Switch>
       </Router>
     )
   }

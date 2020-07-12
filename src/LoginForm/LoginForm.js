@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './LoginForm.css'
 
 function LoginForm(props) {
@@ -23,12 +24,14 @@ function LoginForm(props) {
         placeholder='Password'
         onChange={event => props.handleChange(event)}
       />
-      <input 
-        data-testid='loginButton'
-        type='submit'
-        value='Login'
-        className='submit-login-button' 
-      />
+      <Link to={{pathname: '/', state: {currentUser: props.currentUser}}}>
+        <input 
+          data-testid='loginButton'
+          type='submit'
+          value='Login'
+          className='submit-login-button' 
+        />
+      </Link>
     </form>
   )
 }
