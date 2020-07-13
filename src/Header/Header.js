@@ -18,10 +18,13 @@ function Header({ currentUser, loginLogout }) {
           <h2 className="greeting">Welcome!</h2>
         }
       </section>
-      <Link to='/login'>
-        <button className='login-button' onClick={loginLogout}>
+      {/* <Link to='/login' className='login-button'>
+        <button onClick={loginLogout}>
           {currentUser ? 'LOGOUT': 'LOGIN'}
         </button>
+      </Link> */}
+      <Link to='/login' className='login-button' onClick={loginLogout}>
+        {currentUser ? 'LOGOUT': 'LOGIN'}
       </Link>
     </header>
     )

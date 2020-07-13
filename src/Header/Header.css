@@ -12,9 +12,13 @@
   align-self: flex-end;
   background-color: #FEFDD0;
   border-radius: 3px;
-  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  font-weight: 800;
   height: 25%;
   justify-content: flex-end;
+  padding: .4%;
+  text-align: center;
+  text-decoration: none;
   width: 10%
 }
 

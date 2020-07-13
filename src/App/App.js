@@ -50,28 +50,15 @@ class App extends React.Component {
       <Router>
       <Switch>
         <Route exact path="/">
-          {(this.state.currentUser !== null) && <Redirect to='/dashboard' />}
           <Home 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
-            // getCurrentUser={this.getCurrentUser}
             logOutUser={this.logOutUser}
-            // fetchUserRatings={this.fetchUserRatings}
-          />
-        </Route>
-        <Route path='/dashboard'>
-          <Home 
-            currentUser={this.state.currentUser} 
-            currentUserRatings={this.state.currentUserRatings}
-            // getCurrentUser={this.getCurrentUser}
-            logOutUser={this.logOutUser}
-            // fetchUserRatings={this.fetchUserRatings}
           />
         </Route>
         <Route path='/login'>
           <Login 
             getCurrentUser={this.getCurrentUser} 
-            // toggleLoginDisplay={this.toggleLoginDisplay} 
             fetchUserRatings={this.fetchUserRatings}
             currentUser={this.state.currentUser}
           />

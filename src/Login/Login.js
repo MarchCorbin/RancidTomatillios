@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import LoginForm from '../LoginForm/LoginForm'
 import './Login.css'
 import { fetchSingleUserData } from '../fetchCalls/fetchCalls'
+import { withRouter } from 'react-router-dom'
 
 class Login extends React.Component { 
   constructor(props) {
@@ -19,9 +20,8 @@ class Login extends React.Component {
     this.setState({[name]: value, isValid: true})
   }
 
-  hideForm = () => {
+  resetForm = () => {
     this.setState({ email: '', password: ''})
-    // this.props.toggleLoginDisplay()
   }
 
   handleInvalidLogin() {
@@ -30,18 +30,21 @@ class Login extends React.Component {
 
   fetchUserData(postInput) {
     fetchSingleUserData(postInput)
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-          .then(data => {
-            this.props.getCurrentUser(data)
-            this.props.fetchUserRatings(data)
-          })
-          .then(this.hideForm())
-      } else {
-        this.handleInvalidLogin()
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+            .then(data => {
+              this.props.getCurrentUser(data)
+              this.props.fetchUserRatings(data)
+            })
+            .then(this.props.history.push("/"))
+            .then(this.resetForm())
+        } else {
+          this.handleInvalidLogin()
+          this.props.history.push('/login')
+        }
       }
-    })    
+    )    
   }
 
   loginCredentials = (e) => {
@@ -70,7 +73,7 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default withRouter(Login)
 
 Login.propTypes = {
   getCurrentUser: PropTypes.func.isRequired,
