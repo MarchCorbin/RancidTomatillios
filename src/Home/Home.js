@@ -23,11 +23,7 @@ class Home extends Component {
       .catch(err => <Redirect to= '/error' />)
   }
 
-  loginLogout = () => {
-    this.props.currentUser !== null &&
-      this.props.logOutUser() 
-      // this.toggleLoginDisplay()
-  }
+  
 
   // toggleLoginDisplay = () => {
   //   this.setState({isLoginOpen: !this.state.isLoginOpen})
@@ -36,10 +32,6 @@ class Home extends Component {
   render() {
     return (
       <main data-testid='home'>
-        <Header 
-          loginLogout={this.loginLogout}
-          currentUser={this.props.currentUser}
-        />
         {/* {this.state.isLoginOpen && 
           <Login 
             getCurrentUser={this.props.getCurrentUser} 
