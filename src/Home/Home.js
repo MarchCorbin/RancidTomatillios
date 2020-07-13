@@ -24,14 +24,14 @@ class Home extends Component {
   }
 
   loginLogout = () => {
-    this.props.currentUser !== null ?
-      this.props.logOutUser() :
-      this.toggleLoginDisplay()
+    this.props.currentUser !== null &&
+      this.props.logOutUser() 
+      // this.toggleLoginDisplay()
   }
 
-  toggleLoginDisplay = () => {
-    this.setState({isLoginOpen: !this.state.isLoginOpen})
-  }
+  // toggleLoginDisplay = () => {
+  //   this.setState({isLoginOpen: !this.state.isLoginOpen})
+  // }
 
   render() {
     return (
@@ -40,13 +40,13 @@ class Home extends Component {
           loginLogout={this.loginLogout}
           currentUser={this.props.currentUser}
         />
-        {this.state.isLoginOpen && 
+        {/* {this.state.isLoginOpen && 
           <Login 
             getCurrentUser={this.props.getCurrentUser} 
             toggleLoginDisplay={this.toggleLoginDisplay} 
             fetchUserRatings={this.props.fetchUserRatings}
           />
-        }
+        } */}
         <MovieCardContainer 
           currentUser={this.props.currentUser}
           allMovies={this.state.allMovies}
