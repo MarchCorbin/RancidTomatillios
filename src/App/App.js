@@ -10,6 +10,7 @@ import Home from '../Home/Home.js'
 import ErrorPage from '../ErrorPage/ErrorPage'
 import { fetchUserRatingsData } from '../fetchCalls/fetchCalls'
 import Login from '../Login/Login'
+import Header from '../Header/Header'
 
 
 class App extends React.Component {
@@ -34,14 +35,20 @@ class App extends React.Component {
       })
       .catch(err => <Redirect to='/error' />)
   }
+
+  loginLogout = () => {
+    this.state.currentUser !== null &&
+      this.setState({ currentUser: null })
+    // this.toggleLoginDisplay()
+  }
  
   getCurrentUser = (data) => {
     this.setState({ currentUser: data.user})
   }
 
-  logOutUser = () => {
-    this.setState({ currentUser: null })
-  }
+  // logOutUser = () => {
+  //   this.setState({ currentUser: null })
+  // }
 
   render () {
     console.log('RERENDER APP')
@@ -50,6 +57,10 @@ class App extends React.Component {
       <Router>
       <Switch>
         <Route exact path="/">
+          <Header 
+            loginLogout={this.loginLogout}
+            currentUser={this.state.currentUser}
+          />
           <Home 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
@@ -64,6 +75,10 @@ class App extends React.Component {
           />
         </Route>
         <Route path='/movies/:id'>
+          <Header 
+            loginLogout={this.loginLogout}
+            currentUser={this.state.currentUser}
+          />
           <SingleMovieDetails 
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
