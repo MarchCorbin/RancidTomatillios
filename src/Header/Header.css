@@ -1,5 +1,6 @@
 .main-header {
   background: linear-gradient(to top right, #33CC33 1%, #00FFCC 80%);  
+  border-bottom: #FEFDD0 solid 2px;
   display: flex;
   flex-direction: column;
   height: 15vh;

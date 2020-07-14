@@ -2,6 +2,7 @@
   height: 100vh;
   width: 100%;
   background-size: 100%;
+  background: rgba(50, 50, 50, 0.6);
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
@@ -14,8 +15,10 @@
 }
 
 .poster {
-  width:100%;
+  background: rgba(50, 50, 50, 0.6);
+  height: 100%;
   padding: 5%;
+  width: 100%;
 }
 
 .poster-section {
@@ -23,7 +26,6 @@
   width: 100%;
   display: grid;
   grid-template-columns: 30% 40% 30%;
-  background: rgba(50, 50, 50, 0.6);
 
 }
 
@@ -32,11 +34,11 @@
 }
 
 .single-movie-header {
-  background: transparent;
-  height: 15%;
-  width: 100%;
-  text-align: center;
   background: rgba(50, 50, 50, 0.6);
+  border-bottom: 2px solid;
+  height: 15%;
+  text-align: center;
+  width: 100%;
 }
 
 body {
@@ -46,6 +48,7 @@ body {
 .movie-title {
   font-size: 4.5em;
   height: 70%;
+  padding: 1%
 }
 
 .tagline {
@@ -55,16 +58,18 @@ body {
 }
 
 .main-details {
+  background: rgba(50, 50, 50, 0.6);
+  border-left: solid 2px;
+  border-right: solid 2px;
+  font-size: 1.5em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
   height: 100%;
-  width: 100%;
-  padding: 5% 10%;
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: visible;
-  background: rgba(50, 50, 50, 0.6);
-  font-family: 'Lato', sans-serif;
-  font-size: 1.5em;
-  font-weight: 400;
+  padding: 5% 10%;
+  width: 100%;
 }
 
 .misc-details {
