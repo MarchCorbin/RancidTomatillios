@@ -46,6 +46,7 @@ class App extends React.Component {
     this.setState({ currentUser: data.user})
   }
 
+  
   // logOutUser = () => {
   //   this.setState({ currentUser: null })
   // }
@@ -68,6 +69,10 @@ class App extends React.Component {
           />
         </Route>
         <Route path='/login'>
+          <Header 
+            loginLogout={this.loginLogout}
+            currentUser={this.state.currentUser}
+          />
           <Login 
             getCurrentUser={this.getCurrentUser} 
             fetchUserRatings={this.fetchUserRatings}
