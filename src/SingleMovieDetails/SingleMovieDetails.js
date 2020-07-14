@@ -103,20 +103,22 @@ class SingleMovieDetails extends React.Component {
             <p className='current-user-rating'>Your Rating: -</p>)
           } */}
 
-           <div>
-           {this.props.currentUser && 
-             <Ratings 
-              reFetchUpdate={this.reFetchUpdate}
-              updateSingleMovieState={this.updateState}
-              currentUser={this.props.currentUser}
-              movieId={this.state.id}
-              userRating={this.state.user_rating}
-              deleteRating={this.deleteRating}
-              fetchUserRatings={this.props.fetchUserRatings}
-             />
-           }
-           </div>
-            <p>Avg Rating: {this.state.average_rating}</p> 
+            <p className='avg-rating-fav'>Avg Rating: {this.state.average_rating} 
+              {this.props.currentUser && <button>Favorite</button>}
+            </p> 
+            <section>
+              {this.props.currentUser && 
+                <Ratings 
+                  reFetchUpdate={this.reFetchUpdate}
+                  updateSingleMovieState={this.updateState}
+                  currentUser={this.props.currentUser}
+                  movieId={this.state.id}
+                  userRating={this.state.user_rating}
+                  deleteRating={this.deleteRating}
+                  fetchUserRatings={this.props.fetchUserRatings}
+                />
+              }
+            </section>
             <p>Synopsis: {this.state.overview}</p>
           </section>
           <section className="misc-details">
