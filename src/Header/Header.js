@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Header.css'
 import Icon from '../Assets/tomatillo.png'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-//make class component and add isLoginOpen to state
-function Header({ currentUser, loginLogout }) {
+function Header({ currentUser, loginLogout, history }) {
+  let previousRoute = history.location.pathname
   return (
     <header className='main-header' data-testid='header'>
       <section className='header-text'>
@@ -18,19 +18,19 @@ function Header({ currentUser, loginLogout }) {
           <h2 className="greeting">Welcome!</h2>
         }
       </section>
-      {/* <Link to='/login' className='login-button'>
-        <button onClick={loginLogout}>
-          {currentUser ? 'LOGOUT': 'LOGIN'}
-        </button>
-      </Link> */}
-      <Link to='/login' className='login-button' onClick={loginLogout}>
+      {/* <Link to={!currentUser ? '/login' : previousRoute} className='login-button' onClick={loginLogout}>
         {currentUser ? 'LOGOUT': 'LOGIN'}
-      </Link>
+      </Link> */}
+
+      {currentUser ? 
+        <Link to={previousRoute} className='login-button' onClick={loginLogout}>LOGOUT</Link> : 
+        <Link to='/login' className='login-button' onClick={loginLogout}>LOGIN</Link>
+      }
     </header>
-    )
+  )
 }
 
-export default Header
+export default withRouter(Header)
 
 Header.propTypes = {
   currentUser: PropTypes.object.isRequired,
