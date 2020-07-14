@@ -1,0 +1,12 @@
+.comments-section {
+  height: 21em;
+  overflow: visible;
+}
+
+.comments-btn {
+  background: #FEFDD0;
+}
+
+.commented-section {
+background: transparent;
+}

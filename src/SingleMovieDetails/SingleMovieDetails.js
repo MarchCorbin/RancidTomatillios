@@ -3,6 +3,7 @@ import './SingleMovieDetails.css'
 import {withRouter} from 'react-router-dom'
 import Ratings from '../Ratings/Ratings'
 import { fetchSingleMovie, fetchUserRatingsData } from '../fetchCalls/fetchCalls'
+import Comments from '../Comments/Comments'
 
 class SingleMovieDetails extends React.Component {
   constructor(props) {
@@ -125,6 +126,12 @@ class SingleMovieDetails extends React.Component {
             <p>Genres: {this.state.genres}</p>
             <p>Budget: {this.state.budget}</p>
             <p>Revenue: {this.state.revenue}</p>
+              <section className="comments-section">
+                <Comments 
+                movieId={this.state.id}
+                user={this.props.currentUser}
+                />
+              </section>
           </section>
         </section>  
       </main>
