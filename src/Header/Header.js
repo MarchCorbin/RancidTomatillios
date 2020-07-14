@@ -9,10 +9,12 @@ function Header({ currentUser, loginLogout, history }) {
   return (
     <header className='main-header' data-testid='header'>
       <section className='header-text'>
-        <div className='icon-holder'>
+        
+        <Link to='/' className='icon-holder'>
           <img className='icon' src={Icon} alt='animated tomatillo' />
           <h1 className='main-header-title'>Rancid Tomatillos</h1> 
-        </div>
+        </Link>
+
         {currentUser !== null ? 
           <h2 className="greeting">Welcome, {currentUser.name}!</h2> : 
           <h2 className="greeting">Welcome!</h2>
