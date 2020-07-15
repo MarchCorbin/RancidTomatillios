@@ -24,7 +24,6 @@ class App extends React.Component {
       currentUserRatings: [],
       currentUserFavorites: []
     }
-    console.log(this.state)
   }
 
   fetchUserRatings = async (data) => {
@@ -33,7 +32,6 @@ class App extends React.Component {
       .then(data => {
         // console.log("1) fetchUserRatings BEFORE🔫: ", this.state.currentUserRatings)
         this.setState({currentUserRatings: data.ratings})
-        // console.log("2) fetchUserRatings AFTER🔥: ", data.ratings)
         return data
       })
       .catch(err => <Redirect to='/error' />)
