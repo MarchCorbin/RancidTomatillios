@@ -1,0 +1,37 @@
+.comments-section {
+  height: 21em;
+  overflow: visible;
+}
+
+.comments-btn {
+  background: #FEFDD0;
+  background: #FEFDD0;
+  height: 3.4em;
+  width: 5em;
+  border-radius: 6px;
+  border: lightgreen;
+}
+
+.commented-section {
+background: transparent;
+padding: .3em .2em;
+margin-bottom: 20px;
+}
+
+.conditional {
+  height: 21em;
+}
+
+.each-comment {
+  background: transparent;
+  padding: .3em .2em;
+  margin-bottom: 20px;
+}
+
+.placeholder-text {
+  margin-top: 15px;
+}
+
+.comment-input {
+  margin: 1em;
+}
