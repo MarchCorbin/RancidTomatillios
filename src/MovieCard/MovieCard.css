@@ -10,12 +10,21 @@
   width: 100%
 }
 
+.movie-card-info {
+  background: linear-gradient(to right, #33cc33 8%, #00ffcc 99%);
+  padding: 2%
+}
+
 .movie-card-title, 
 .release-date, 
 .avg-rating, 
 .current-user-rating {
-    background: linear-gradient(to right, #33cc33 8%, #00ffcc 99%);
-    color: black;
-    font-weight: 700;
-    padding: 0% 2%
+  color: black;
+  font-weight: 700;
+  padding: 0% 2%;
+}
+
+.movie-card-title {
+  display: flex;
+  justify-content: space-between;
 }

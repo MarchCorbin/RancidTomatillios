@@ -12,26 +12,34 @@ function MovieCard(
     releaseDate, 
     avgRating, 
     currentUser, 
-    currentUserRating 
+    currentUserRating,
+    renderHeart,
+    toggleFavorite
   }) {
     return (
-      <Link 
-        to ={{pathname: `/movies/${id}`, state:{ id: id }}}
-      >
+      <Link to ={{pathname: `/movies/${id}`, state:{ id: id }}}>
         <section data-testid="movie-card" className='movie-card' key={key}>
           <img 
             className='card-poster' 
             src={poster} 
             alt={`Movie poster for ${title}`}
           />
-          <p className='movie-card-title'>{title}</p>
-          <p className='release-date'>Release Date: {releaseDate}</p>
-          <p className='avg-rating'>Average Rating: {avgRating}</p>
-          {currentUser &&
-            (currentUserRating ? 
-            <p className='current-user-rating'>Your Rating: {currentUserRating.rating}</p> : 
-            <p className='current-user-rating'>Your Rating: -</p>)
-          }
+          <section className='movie-card-info'>
+            {title.length > 35 ? <p>{title.slice(0, 32)}...</p> : <p>{title}</p>}
+            {currentUser && 
+              <img 
+                src={renderHeart(id)} 
+                onClick={() => toggleFavorite(id)}
+              />
+            }
+            <p className='release-date'>Release Date: {releaseDate}</p>
+            <p className='avg-rating'>Average Rating: {avgRating}</p>
+            {currentUser &&
+              (currentUserRating ? 
+              <p className='current-user-rating'>Your Rating: {currentUserRating.rating}</p> : 
+              <p className='current-user-rating'>Your Rating: -</p>)
+            }
+          </section>
         </section>
       </Link>
     )

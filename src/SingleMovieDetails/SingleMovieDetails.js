@@ -2,27 +2,27 @@ import React from 'react'
 import './SingleMovieDetails.css' 
 import {withRouter} from 'react-router-dom'
 import Ratings from '../Ratings/Ratings'
-import { fetchSingleMovie, fetchUserRatingsData } from '../fetchCalls/fetchCalls'
+import { fetchSingleMovie } from '../fetchCalls/fetchCalls'
 import Comments from '../Comments/Comments'
 
 class SingleMovieDetails extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props, 'Single Movie props')
+    // console.log(this.props, 'Single Movie props')
     this.state = {
-        id: '',
-        title: "",
-        poster_path: "",
-        backdrop_path: "",
-        release_date: "",
-        overview: "",
-        genres: [],
-        budget: 0,
-        revenue: 0,
-        runtime: '',
-        tagline: '',
-        average_rating: 0,
-        user_rating: null
+      id: '',
+      title: "",
+      poster_path: "",
+      backdrop_path: "",
+      release_date: "",
+      overview: "",
+      genres: [],
+      budget: 0,
+      revenue: 0,
+      runtime: '',
+      tagline: '',
+      average_rating: 0,
+      user_rating: null
     }
   }
 
@@ -52,7 +52,7 @@ class SingleMovieDetails extends React.Component {
   }
 
   deleteRating = async (ratingID) => {    
-    console.log("deleteRating ID", ratingID)
+    // console.log("deleteRating ID", ratingID)
     // if (this.props.currentUser) {
       const userID = this.props.currentUser.id
       const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
@@ -62,17 +62,16 @@ class SingleMovieDetails extends React.Component {
 
   reFetchUpdate = () => {
     const movieID = this.props.match.params.id
-    console.log(movieID)
+    console.log(movieID, "ID")
     fetchSingleMovie(movieID)
       .then(data => this.updateState(data))
   }
 
   componentDidMount = () => {
     this.reFetchUpdate()
-    // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = (prevProps) => {
     if(this.props.currentUserRatings !== prevProps.currentUserRatings) {
       this.reFetchUpdate()
     }
@@ -91,27 +90,27 @@ class SingleMovieDetails extends React.Component {
         <section className='poster-section' data-testid='movie-details'>
           <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
-          
-          {/* {this.props.currentUser &&
-            (this.state.user_rating ? 
-            <p className='current-user-rating'>Your Rating: {this.state.user_rating.rating}</p> : 
-            <p className='current-user-rating'>Your Rating: -</p>)
-          } */}
-
-           <div>
-           {this.props.currentUser && 
-             <Ratings 
-              reFetchUpdate={this.reFetchUpdate}
-              updateSingleMovieState={this.updateState}
-              currentUser={this.props.currentUser}
-              movieId={this.state.id}
-              userRating={this.state.user_rating}
-              deleteRating={this.deleteRating}
-              fetchUserRatings={this.props.fetchUserRatings}
-             />
-           }
-           </div>
-            <p>Avg Rating: {this.state.average_rating}</p> 
+            <p className='avg-rating-fav'>Average Rating: {this.state.average_rating} 
+            {this.props.currentUser && 
+              <img 
+                src={this.props.renderHeart(this.state.id)} 
+                onClick={() => this.props.toggleFavorite(this.state.id)}
+              />
+            }
+            </p> 
+            <section>
+              {this.props.currentUser && 
+                <Ratings 
+                  reFetchUpdate={this.reFetchUpdate}
+                  updateSingleMovieState={this.updateState}
+                  currentUser={this.props.currentUser}
+                  movieId={this.state.id}
+                  userRating={this.state.user_rating}
+                  deleteRating={this.deleteRating}
+                  fetchUserRatings={this.props.fetchUserRatings}
+                />
+              }
+            </section>
             <p>Synopsis: {this.state.overview}</p>
           </section>
           <section className="misc-details">

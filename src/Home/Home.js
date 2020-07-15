@@ -9,12 +9,11 @@ class Home extends Component {
     super(props)
     this.state = {
       allMovies: [],
-      isLoginOpen: false,
     }
   }
 
   componentDidMount() {
-    console.log(this.props, 'HOME')
+    // console.log(this.props, 'HOME')
     fetchAllMovies()
       .then(data => {this.setState({allMovies: data.movies})})
       .catch(err => <Redirect to= '/error' />)
@@ -27,6 +26,8 @@ class Home extends Component {
           currentUser={this.props.currentUser}
           allMovies={this.state.allMovies}
           currentUserRatings={this.props.currentUserRatings}
+          renderHeart={this.props.renderHeart}
+          toggleFavorite={this.props.toggleFavorite}
         />
       </main>
     )
