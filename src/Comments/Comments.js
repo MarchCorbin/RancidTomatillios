@@ -1,5 +1,6 @@
 import React from 'react'
 import './Comments.css'
+import { getAllByRole, render } from '@testing-library/react'
 
 class Comments extends React.Component {
   constructor(props) {
@@ -7,36 +8,79 @@ class Comments extends React.Component {
     this.state = {
       author: null,
       comment: null,
-      movieID: 0
+      movieID: null,
+      currentComments: []
     }
   }
 
+componentDidUpdate()  {
+  fetch('http://localhost:3002/api/v1/comments', {
+      method: "GET",
+    })
+    .then(res => res.json())
+    .then(data => this.filterComments(data))
+  }
+
+filterComments = (data) => {
+  let filtered = data.filter(entry => entry.movieID == this.props.movieId)
+  const movieComments = filtered.map(thought => {
+   return(<div className='each-comment'>
+      <h5>{thought.author}</h5>
+      <p>{thought.comment}</p>
+    </div> )
+  })
+  this.setState({currentComments: movieComments})
+}
+
+
+
+   
+
 postComment() {
-   fetch('/api/v1/comments', {
+  fetch('http://localhost:3002/api/v1/comments', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(this.state)
+    body: JSON.stringify({
+      author: this.state.author, 
+      comment: this.state.comment, 
+      movieID: this.state.movieID })
   })
+  .catch(err => console.log(err))
 }
 
-  onSubmitHandler = (event) => {
-    this.setState({ comment: event.target.value, movieID:this.props.movieId, author:this.props.user.name })
-    this.postComment()
-  }
+handleClick = async () => {
+await this.setState({
+  author: this.props.user.name,
+  movieID: this.props.movieId
+})
+this.postComment()
+this.clearInput()
+}
 
-  render() {
+clearInput() {
+  this.setState({comment: ''})
+}
+
+handleChange = (event) => {
+this.setState({ comment: event.target.value })
+console.log(this.state.comment)
+}
+
+
+  render = () => {
     return (
       <main>
         <h1>Comments</h1>
-          <input name='commented' onChange={this.onSubmitHandler.bind(this)} value={this.state.comment} className='comment-input' placeholder='Leave a Comment!'></input>
-          <button onClick={this.onSubmitHandler} className='comments-btn'>SUBMIT</button>
-          <section className='commented-section'>
-    <h2 className='commented-header' name='comment-header' value={this.state.author}>{this.state.author}</h2>
-        <p className='commented-body'></p>
-        </section>
-        </main>
+        {this.props.user ? <div><input name='commented' className='comment-input' type="text" onChange={(event) => this.handleChange(event)} value={this.state.comment}placeholder='Leave a Comment!'></input>
+        <button onClick={() => this.handleClick()}
+             className='comments-btn'>SUBMIT</button></div> : <h3 className='placeholder-text'>Login to Comment</h3>}
+             {this.state.currentComments ? 
+        <section className='commented-section'>
+            <p className='commented-body'>{this.state.currentComments}</p>
+        </section> : <h5 className='placeholder-text'>Be the first to comment on this movie!</h5>}
+      </main>
           
     )}
     

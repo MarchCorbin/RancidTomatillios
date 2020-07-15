@@ -27,12 +27,9 @@ class SingleMovieDetails extends React.Component {
   }
 
   updateState = data => {
-    console.log('3) SingleMovieDetails - updateState() - this.props.currentUserRatings: ', this.props.currentUserRatings)
     let movieRating = this.props.currentUserRatings.find(rating => {
      return rating.movie_id === data.movie.id
     })
-
-    console.log("find movie rating: ", movieRating)
 
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === data.movie.id)
     this.setState(
@@ -82,9 +79,6 @@ class SingleMovieDetails extends React.Component {
   }
 
   render() {
-    console.log("SingleMovieDetails: this.props.currentUserRatings", this.props.currentUserRatings)
-    console.log("SingleMovieDetails: this.state.user_rating", this.state.user_rating)
-    // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
     return (
       <main
         className="single-movie-view"
@@ -130,6 +124,7 @@ class SingleMovieDetails extends React.Component {
                 <Comments 
                 movieId={this.state.id}
                 user={this.props.currentUser}
+                rating={this.state.user_rating}
                 />
               </section>
           </section>
