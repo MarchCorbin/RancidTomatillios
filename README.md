@@ -3,31 +3,46 @@
 * __Kyle Wong__ (GitHub: [KyleWong2510](https://github.com/KyleWong2510))
 
 ## Overview
- Rancid Tomatillos is a movie details and reviewing website. Users can build a list of favorite movies to reference later. Once logged in a user can view a movies details, rate and leave feedback for specific movies. If a user hasnt seen a movie but is still curious about its quality, the movies also present an aggregated average score from all site users.
+ Rancid Tomatillos is a movie details and reviewing website. Users can curate a list of favorite movies to reference later and save it to their personal account. Once logged in a user can view a movies details, rate and leave feedback for specific movies. If a user hasnt seen a movie but is still curious about its quality, the movies also present an aggregated average score from all site users as well as allow non subscribers to view the comments for each individual movie.
+ Developers have to create and deploy the site as well as a microservice from scratch, get dynamic routing to work appropriately according to each movie clicked, also create redirect functionality in the instance of a 400 level error.
 
 
 ## Startup instructions
+Clone down this repository to your local machine.
 
-### `npm start`
+Once cloned, cd into this repo's directy.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run npm install.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Run npm start.
 
-### `npm test`
+In your browser, navigate to localhost:3001.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Technologies Used
+* JavaScript/ES6
+* React
+* nodemon
+* microservice
+* express
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Systems Used
+* NPM
+* GITHUB
+* TDD 
+* GH Project Board
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Challenges
+* Posting to the microserver was a challenge that allowed the team to learn about CORS and how to work with it.
+* Updating the comments in real time was a challenge to update and render appropriately. 
+* Getting the favoriting functionality to render was a challenge that helped the team learn the importance of async operations.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## Wins
+* Gaining significant practice with creating a modular app with an organized directory of responsibilities.
+* First time buildiing a microserver and then connecting it to the corresponding app.
+* Learned the syntax and many of the intricacies of using and working with React.
+* Successfully created a basic application using express.
+
+
+# Project in Action
