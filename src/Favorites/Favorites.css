@@ -1,0 +1,11 @@
+.no-movies-msg {
+  background-color:  #FEFDD0;
+  height: 85vh;
+  padding: 10%;
+  text-align: center;
+  width: 100%
+}
+
+.msg {
+  font-size: 2em;
+}

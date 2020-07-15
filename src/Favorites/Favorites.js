@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { fetchAllMovies, fetchFavoriteMovies } from '../fetchCalls/fetchCalls'
 import MovieCard from '../MovieCardContainer/MovieCardContainer'
 import MovieCardContainer from '../MovieCardContainer/MovieCardContainer'
+import './Favorites.css'
 
 class Favorites extends Component {
   constructor(props) {
@@ -21,7 +22,6 @@ class Favorites extends Component {
   }
 
   render() {
-    console.log(this.props.favorites, 'this.props.favorites')
     return (
       <main>
         {this.state.favoriteMovies.length > 0 ?  
@@ -32,7 +32,10 @@ class Favorites extends Component {
             renderHeart={this.props.renderHeart}
             toggleFavorite={this.props.toggleFavorite}
           /> : 
-          <h1>No movies favorited</h1> 
+          <section className='no-movies-msg'>
+            <h1 className='msg'>No movies favorited.</h1> 
+            <h1>Go back and add some!</h1>
+          </section>
         }
       </main>
     )

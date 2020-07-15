@@ -13,7 +13,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props, 'HOME')
     fetchAllMovies()
       .then(data => {this.setState({allMovies: data.movies})})
       .catch(err => <Redirect to= '/error' />)
