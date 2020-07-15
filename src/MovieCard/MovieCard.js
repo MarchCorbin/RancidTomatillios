@@ -12,7 +12,9 @@ function MovieCard(
     releaseDate, 
     avgRating, 
     currentUser, 
-    currentUserRating 
+    currentUserRating,
+    renderHeart,
+    toggleFavorite
   }) {
     return (
       <Link to ={{pathname: `/movies/${id}`, state:{ id: id }}}>
@@ -24,7 +26,12 @@ function MovieCard(
           />
           <section className='movie-card-info'>
             {title.length > 35 ? <p>{title.slice(0, 32)}...</p> : <p>{title}</p>}
-            {currentUser && <button>Favorite</button>}
+            {currentUser && 
+              <img 
+                src={renderHeart(id)} 
+                onClick={() => toggleFavorite(id)}
+              />
+            }
             <p className='release-date'>Release Date: {releaseDate}</p>
             <p className='avg-rating'>Average Rating: {avgRating}</p>
             {currentUser &&

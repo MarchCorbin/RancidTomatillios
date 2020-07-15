@@ -9,7 +9,6 @@ class Home extends Component {
     super(props)
     this.state = {
       allMovies: [],
-      isLoginOpen: false,
     }
   }
 
@@ -27,6 +26,8 @@ class Home extends Component {
           currentUser={this.props.currentUser}
           allMovies={this.state.allMovies}
           currentUserRatings={this.props.currentUserRatings}
+          renderHeart={this.props.renderHeart}
+          toggleFavorite={this.props.toggleFavorite}
         />
       </main>
     )

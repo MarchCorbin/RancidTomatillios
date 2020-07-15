@@ -82,7 +82,6 @@ class SingleMovieDetails extends React.Component {
   }
 
   render() {
-    debugger
     // console.log("SingleMovieDetails: this.props.currentUserRatings", this.props.currentUserRatings)
     // console.log("SingleMovieDetails: this.state.user_rating", this.state.user_rating)
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
@@ -99,13 +98,12 @@ class SingleMovieDetails extends React.Component {
           <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
             <p className='avg-rating-fav'>Average Rating: {this.state.average_rating} 
-              {this.props.currentUser && 
-                <img 
-                  // src={this.props.renderHeart(this.state.id)} 
-                  src={yellowHeart}
-                  onClick={this.props.toggleFavorite()}
-                />
-              }
+            {this.props.currentUser && 
+              <img 
+                src={this.props.renderHeart(this.state.id)} 
+                onClick={() => this.props.toggleFavorite(this.state.id)}
+              />
+            }
             </p> 
             <section>
               {this.props.currentUser && 

@@ -8,6 +8,7 @@ import {
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
 import ErrorPage from '../ErrorPage/ErrorPage'
+import Favorites from '../Favorites/Favorites'
 import { fetchUserRatingsData, postToFavorites, getFavorites, deleteFromFavorites } from '../fetchCalls/fetchCalls'
 import Login from '../Login/Login'
 import Header from '../Header/Header'
@@ -47,7 +48,6 @@ class App extends React.Component {
     this.setState({ currentUser: data.user})
   }
 
-  
   removeFavorite = async (id) => {
     await deleteFromFavorites(id)
     await getFavorites()
@@ -64,7 +64,10 @@ class App extends React.Component {
   
   toggleFavorite = (id) => {
     //toggle icon
-    if (!this.state.currentUserFavorites.map(movie => movie.movieID).includes(id)) {
+    let ids = this.state.currentUserFavorites.map(movie => movie.movieID)
+    console.log(ids, 'IDS')
+    console.log(id, 'ID')
+    if (!ids.includes(id)) {
       this.addFavorite(id)
     } else {
       this.removeFavorite(id)
@@ -81,12 +84,13 @@ class App extends React.Component {
       .catch(err => console.error(err))
   }
 
-  // renderHeart = (id) => {
-  //   let movieIDs = this.state.currentUserFavorites.map(movie => movie.movieID)
-  //   console.log(movieIDs, 'IDS!!!')
-  //   console.log(id, "ID")
-  //   return movieIDs.includes(id) ? redHeart : yellowHeart
-  // }
+  renderHeart = (id) => {
+    let movieIDs = this.state.currentUserFavorites.map(movie => movie.movieID)
+    console.log(movieIDs, 'IDS!!!')
+    console.log(id, "ID")
+    return movieIDs.includes(id) ? redHeart : yellowHeart
+
+  }
 
   render () {
     // console.log('RERENDER APP')
@@ -102,6 +106,8 @@ class App extends React.Component {
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
             logOutUser={this.logOutUser}
+            renderHeart={this.renderHeart}
+            toggleFavorite={this.toggleFavorite}
           />
         </Route>
         <Route path='/login'>
@@ -128,6 +134,19 @@ class App extends React.Component {
             renderHeart={this.renderHeart}
             toggleFavorite={this.toggleFavorite}
           />
+        </Route>
+        <Route path='/favorites'>
+          <Header 
+            loginLogout={this.loginLogout}
+            currentUser={this.state.currentUser}
+          />     
+          <Favorites 
+            currentUser={this.state.currentUser} 
+            currentUserRatings={this.state.currentUserRatings}
+            favorites={this.state.currentUserFavorites}
+            renderHeart={this.renderHeart}
+            toggleFavorite={this.toggleFavorite}
+          />   
         </Route>
         <Route path='/error'>
           <ErrorPage />

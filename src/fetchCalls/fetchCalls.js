@@ -31,13 +31,16 @@ export const fetchSingleMovie = (movieID) => {
 }
 
 export const postToFavorites = async (id) => {
-  return await fetch('http://localhost:3001/api/v1/favorites', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'  
-    },
-    body: JSON.stringify({'movieID': id})
-  })
+  const post = {movieID: id}
+  return await fetch('http://localhost:3001/api/v1/favorites', 
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'  
+      },
+      body: JSON.stringify(post)
+    }
+  )
     .then(res => console.log(res))
     .catch(err => console.error(err))
 }
@@ -48,7 +51,14 @@ export const getFavorites = async () => {
 }
 
 export const deleteFromFavorites = async (id) => {
-  return await fetch(`http://localhost:3001/api/v1/favorites/${id}`)
+  return await fetch(`http://localhost:3001/api/v1/favorites/${id}`, {
+    method: 'DELETE'
+  })
     .then(res => console.log(res))
     .catch(err => console.error(err))
+}
+
+export const fetchFavoriteMovies = () => {
+  return fetch('http://localhost:3001/api/v1/favorites')
+    .then(res => res.json())
 }
