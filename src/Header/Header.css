@@ -9,18 +9,30 @@
   width: 100%
 }
 
-.header-button{
+.header-buttons {
   align-self: flex-end;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 25%;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.header-button{
   background-color: #FEFDD0;
   border-radius: 3px;
   font-family: 'Lato', sans-serif;
   font-weight: 800;
-  height: 25%;
+  height: 100%;
   justify-content: flex-end;
-  padding: .1%;
+  padding: 1%;
   text-align: center;
   text-decoration: none;
-  width: 10%;
+  width: 45%
+}
+
+.header-login {
+  justify-self: flex-end;
 }
 
 .header-text {
