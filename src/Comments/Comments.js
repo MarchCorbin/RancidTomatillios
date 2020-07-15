@@ -14,7 +14,7 @@ class Comments extends React.Component {
   }
 
 componentDidUpdate()  {
-  fetch('http://localhost:3002/api/v1/comments', {
+  fetch('http://localhost:3001/api/v1/comments', {
       method: "GET",
     })
     .then(res => res.json())
@@ -32,12 +32,8 @@ filterComments = (data) => {
   this.setState({currentComments: movieComments})
 }
 
-
-
-   
-
 postComment() {
-  fetch('http://localhost:3002/api/v1/comments', {
+  fetch('http://localhost:3001/api/v1/comments', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

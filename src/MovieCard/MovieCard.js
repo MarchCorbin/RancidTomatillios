@@ -17,21 +17,28 @@ function MovieCard(
     toggleFavorite
   }) {
     return (
+      <section data-testid="movie-card" className='movie-card' key={key}>
       <Link to ={{pathname: `/movies/${id}`, state:{ id: id }}}>
-        <section data-testid="movie-card" className='movie-card' key={key}>
           <img 
             className='card-poster' 
             src={poster} 
             alt={`Movie poster for ${title}`}
           />
+      </Link>
           <section className='movie-card-info'>
-            {title.length > 35 ? <p>{title.slice(0, 32)}...</p> : <p>{title}</p>}
-            {currentUser && 
-              <img 
-                src={renderHeart(id)} 
-                onClick={() => toggleFavorite(id)}
-              />
-            }
+            <div className='movie-card-title-bar'>
+              {title.length > 25 ? 
+                <p className='movie-card-title'>{title.slice(0, 22)}...</p> : 
+                <p className='movie-card-title'>{title}</p>
+              }
+              {currentUser && 
+                <img 
+                  className='heart-icon'
+                  src={renderHeart(id)} 
+                  onClick={() => toggleFavorite(id)}
+                />
+              }
+            </div>
             <p className='release-date'>Release Date: {releaseDate}</p>
             <p className='avg-rating'>Average Rating: {avgRating}</p>
             {currentUser &&
@@ -41,7 +48,6 @@ function MovieCard(
             }
           </section>
         </section>
-      </Link>
     )
   }
 export default MovieCard
