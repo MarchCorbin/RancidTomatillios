@@ -23,10 +23,8 @@ function MovieCard(
             alt={`Movie poster for ${title}`}
           />
           <section className='movie-card-info'>
-            <p className='movie-card-title'>
-              {title.length > 35 ? <p>{title.slice(0, 32)}...</p> : <p>{title}</p>}
-              {currentUser && <button>Favorite</button>}
-            </p>
+            {title.length > 35 ? <p>{title.slice(0, 32)}...</p> : <p>{title}</p>}
+            {currentUser && <button>Favorite</button>}
             <p className='release-date'>Release Date: {releaseDate}</p>
             <p className='avg-rating'>Average Rating: {avgRating}</p>
             {currentUser &&

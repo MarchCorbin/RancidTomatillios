@@ -34,6 +34,7 @@ class Login extends React.Component {
         if (res.ok) {
           return res.json()
             .then(data => {
+              this.props.getUserFavorites()
               this.props.getCurrentUser(data)
               this.props.fetchUserRatings(data)
             })
@@ -49,7 +50,7 @@ class Login extends React.Component {
 
   loginCredentials = (e) => {
     e.preventDefault()
-    console.log(this.props.history)
+    // console.log(this.props.history)
     let postInput;
     if (!this.state.email || !this.state.password) {
       this.handleInvalidLogin()

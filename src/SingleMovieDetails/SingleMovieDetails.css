@@ -2,7 +2,6 @@
   height: 100vh;
   width: 100%;
   background-size: 100%;
-  background: rgba(50, 50, 50, 0.6);
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
@@ -15,7 +14,7 @@
 }
 
 .poster {
-  background: rgba(50, 50, 50, 0.6);
+  background: rgba(50, 50, 50, 0.8);
   height: 100%;
   padding: 5%;
   width: 100%;
@@ -26,7 +25,6 @@
   width: 100%;
   display: grid;
   grid-template-columns: 30% 40% 30%;
-
 }
 
 .details-section {
@@ -34,7 +32,7 @@
 }
 
 .single-movie-header {
-  background: rgba(50, 50, 50, 0.6);
+  background: rgba(50, 50, 50, 0.8);
   border-bottom: 2px solid;
   height: 15%;
   text-align: center;
@@ -58,7 +56,7 @@ body {
 }
 
 .main-details {
-  background: rgba(50, 50, 50, 0.6);
+  background: rgba(50, 50, 50, 0.8);
   border-left: solid 2px;
   border-right: solid 2px;
   font-size: 1.5em;
@@ -78,7 +76,7 @@ body {
   height: 100%;
   width: 100%;
   font-size: 1.3em;
-  background: rgba(50, 50, 50, 0.6);
+  background: rgba(50, 50, 50, 0.8);
   font-family: 'Lato',
    sans-serif;
 }

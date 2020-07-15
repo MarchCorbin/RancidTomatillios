@@ -8,10 +8,11 @@ import {
 import SingleMovieDetails from '../SingleMovieDetails/SingleMovieDetails.js';
 import Home from '../Home/Home.js'
 import ErrorPage from '../ErrorPage/ErrorPage'
-import { fetchUserRatingsData } from '../fetchCalls/fetchCalls'
+import { fetchUserRatingsData, postToFavorites, getFavorites, deleteFromFavorites } from '../fetchCalls/fetchCalls'
 import Login from '../Login/Login'
 import Header from '../Header/Header'
-
+import redHeart from '../Assets/heart-red.png'
+import yellowHeart from '../Assets/heart-yellow.png'
 
 class App extends React.Component {
   constructor() {
@@ -19,7 +20,8 @@ class App extends React.Component {
     this.state = {
       currentUser: null,
       error: '',
-      currentUserRatings: []
+      currentUserRatings: [],
+      currentUserFavorites: []
     }
     console.log(this.state)
   }
@@ -28,18 +30,17 @@ class App extends React.Component {
     let userId = data.user.id
     return await fetchUserRatingsData(userId)
       .then(data => {
-        console.log("1) fetchUserRatings BEFORE🔫: ", this.state.currentUserRatings)
+        // console.log("1) fetchUserRatings BEFORE🔫: ", this.state.currentUserRatings)
         this.setState({currentUserRatings: data.ratings})
-        console.log("2) fetchUserRatings AFTER🔥: ", data.ratings)
+        // console.log("2) fetchUserRatings AFTER🔥: ", data.ratings)
         return data
       })
       .catch(err => <Redirect to='/error' />)
   }
 
-  loginLogout = () => {
+  logout = () => {
     this.state.currentUser !== null &&
       this.setState({ currentUser: null })
-    // this.toggleLoginDisplay()
   }
  
   getCurrentUser = (data) => {
@@ -47,19 +48,54 @@ class App extends React.Component {
   }
 
   
-  // logOutUser = () => {
-  //   this.setState({ currentUser: null })
+  removeFavorite = async (id) => {
+    await deleteFromFavorites(id)
+    await getFavorites()
+    .then(data => this.setState({ currentUserFavorites: data}))
+    .catch(err => console.error(err))
+  } 
+  
+  addFavorite = async (id) => {
+    await postToFavorites(id)
+    await getFavorites()
+      .then(data => this.setState({ currentUserFavorites: data}))
+      .catch(err => console.error(err))
+  }
+  
+  toggleFavorite = (id) => {
+    //toggle icon
+    if (!this.state.currentUserFavorites.map(movie => movie.movieID).includes(id)) {
+      this.addFavorite(id)
+    } else {
+      this.removeFavorite(id)
+    }
+  }
+
+  getUserFavorites = () => {
+    // console.log(getFavorites(), 'getFavorites FN')
+    getFavorites()
+      .then(data => {
+        // console.log(data, 'DATA')
+        this.setState({ currentUserFavorites: data})
+      })
+      .catch(err => console.error(err))
+  }
+
+  // renderHeart = (id) => {
+  //   let movieIDs = this.state.currentUserFavorites.map(movie => movie.movieID)
+  //   console.log(movieIDs, 'IDS!!!')
+  //   console.log(id, "ID")
+  //   return movieIDs.includes(id) ? redHeart : yellowHeart
   // }
 
   render () {
-    console.log('RERENDER APP')
-
+    // console.log('RERENDER APP')
     return (
       <Router>
       <Switch>
         <Route exact path="/">
           <Header 
-            loginLogout={this.loginLogout}
+            logout={this.logout}
             currentUser={this.state.currentUser}
           />
           <Home 
@@ -74,6 +110,7 @@ class App extends React.Component {
             currentUser={this.state.currentUser}
           />
           <Login 
+            getUserFavorites={this.getUserFavorites}
             getCurrentUser={this.getCurrentUser} 
             fetchUserRatings={this.fetchUserRatings}
             currentUser={this.state.currentUser}
@@ -88,6 +125,8 @@ class App extends React.Component {
             currentUser={this.state.currentUser} 
             currentUserRatings={this.state.currentUserRatings}
             fetchUserRatings={this.fetchUserRatings}
+            renderHeart={this.renderHeart}
+            toggleFavorite={this.toggleFavorite}
           />
         </Route>
         <Route path='/error'>

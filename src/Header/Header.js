@@ -4,7 +4,7 @@ import './Header.css'
 import Icon from '../Assets/tomatillo.png'
 import { Link, withRouter } from 'react-router-dom'
 
-function Header({ currentUser, loginLogout, history }) {
+function Header({ currentUser, logout, history }) {
   let previousRoute = history.location.pathname
   return (
     <header className='main-header' data-testid='header'>
@@ -20,13 +20,9 @@ function Header({ currentUser, loginLogout, history }) {
           <h2 className="greeting">Welcome!</h2>
         }
       </section>
-      {/* <Link to={!currentUser ? '/login' : previousRoute} className='login-button' onClick={loginLogout}>
-        {currentUser ? 'LOGOUT': 'LOGIN'}
-      </Link> */}
-
       {currentUser ? 
-        <Link to={previousRoute} className='login-button' onClick={loginLogout}>LOGOUT</Link> : 
-        <Link to='/login' className='login-button' onClick={loginLogout}>LOGIN</Link>
+        <Link to={previousRoute} className='login-button' onClick={logout}>LOGOUT</Link> : 
+        <Link to='/login' className='login-button' onClick={logout}>LOGIN</Link>
       }
     </header>
   )

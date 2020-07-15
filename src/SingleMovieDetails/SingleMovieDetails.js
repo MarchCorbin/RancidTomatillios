@@ -3,30 +3,32 @@ import './SingleMovieDetails.css'
 import {withRouter} from 'react-router-dom'
 import Ratings from '../Ratings/Ratings'
 import { fetchSingleMovie, fetchUserRatingsData } from '../fetchCalls/fetchCalls'
+import yellowHeart from '../Assets/heart-yellow.png'
+
 
 class SingleMovieDetails extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props, 'Single Movie props')
+    // console.log(this.props, 'Single Movie props')
     this.state = {
-        id: '',
-        title: "",
-        poster_path: "",
-        backdrop_path: "",
-        release_date: "",
-        overview: "",
-        genres: [],
-        budget: 0,
-        revenue: 0,
-        runtime: '',
-        tagline: '',
-        average_rating: 0,
-        user_rating: null
+      id: '',
+      title: "",
+      poster_path: "",
+      backdrop_path: "",
+      release_date: "",
+      overview: "",
+      genres: [],
+      budget: 0,
+      revenue: 0,
+      runtime: '',
+      tagline: '',
+      average_rating: 0,
+      user_rating: null
     }
   }
 
   updateState = data => {
-    console.log('3) SingleMovieDetails - updateState() - this.props.currentUserRatings: ', this.props.currentUserRatings)
+    // console.log('3) SingleMovieDetails - updateState() - this.props.currentUserRatings: ', this.props.currentUserRatings)
     let movieRating = this.props.currentUserRatings.find(rating => {
      return rating.movie_id === data.movie.id
     })
@@ -54,7 +56,7 @@ class SingleMovieDetails extends React.Component {
   }
 
   deleteRating = async (ratingID) => {    
-    console.log("deleteRating ID", ratingID)
+    // console.log("deleteRating ID", ratingID)
     // if (this.props.currentUser) {
       const userID = this.props.currentUser.id
       const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
@@ -64,25 +66,25 @@ class SingleMovieDetails extends React.Component {
 
   reFetchUpdate = () => {
     const movieID = this.props.match.params.id
-    console.log(movieID)
+    console.log(movieID, "ID")
     fetchSingleMovie(movieID)
       .then(data => this.updateState(data))
   }
 
   componentDidMount = () => {
     this.reFetchUpdate()
-    // .then(this.setState({ user_rating: this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)}))
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = (prevProps) => {
     if(this.props.currentUserRatings !== prevProps.currentUserRatings) {
       this.reFetchUpdate()
     }
   }
 
   render() {
-    console.log("SingleMovieDetails: this.props.currentUserRatings", this.props.currentUserRatings)
-    console.log("SingleMovieDetails: this.state.user_rating", this.state.user_rating)
+    debugger
+    // console.log("SingleMovieDetails: this.props.currentUserRatings", this.props.currentUserRatings)
+    // console.log("SingleMovieDetails: this.state.user_rating", this.state.user_rating)
     // let userRating = this.props.currentUserRatings.find(rating => rating.movie_id === this.state.id)
     return (
       <main
@@ -96,15 +98,14 @@ class SingleMovieDetails extends React.Component {
         <section className='poster-section' data-testid='movie-details'>
           <img className="poster" alt={`Movie poster for ${this.state.title}`} src={`${this.state.poster_path}`}/>
           <section className='main-details'>
-          
-          {/* {this.props.currentUser &&
-            (this.state.user_rating ? 
-            <p className='current-user-rating'>Your Rating: {this.state.user_rating.rating}</p> : 
-            <p className='current-user-rating'>Your Rating: -</p>)
-          } */}
-
-            <p className='avg-rating-fav'>Avg Rating: {this.state.average_rating} 
-              {this.props.currentUser && <button>Favorite</button>}
+            <p className='avg-rating-fav'>Average Rating: {this.state.average_rating} 
+              {this.props.currentUser && 
+                <img 
+                  // src={this.props.renderHeart(this.state.id)} 
+                  src={yellowHeart}
+                  onClick={this.props.toggleFavorite()}
+                />
+              }
             </p> 
             <section>
               {this.props.currentUser && 
