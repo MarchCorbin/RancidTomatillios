@@ -16,7 +16,8 @@ Run npm install.
 
 Run npm start.
 
-In your browser, navigate to localhost:3001.
+In your browser, navigate to localhost:3000.
+
 
 
 ## Technologies Used
@@ -25,6 +26,8 @@ In your browser, navigate to localhost:3001.
 * nodemon
 * microservice
 * express
+* Jest
+* React Testing library
 
 ## Systems Used
 * NPM
@@ -36,6 +39,7 @@ In your browser, navigate to localhost:3001.
 * Posting to the microserver was a challenge that allowed the team to learn about CORS and how to work with it.
 * Updating the comments in real time was a challenge to update and render appropriately. 
 * Getting the favoriting functionality to render was a challenge that helped the team learn the importance of async operations.
+* Testing in a React environment proved to be a reoccurring challenge for the team.
 
 
 ## Wins
@@ -44,5 +48,20 @@ In your browser, navigate to localhost:3001.
 * Learned the syntax and many of the intricacies of using and working with React.
 * Successfully created a basic application using express.
 
+## Future Iterations
+* Planned iterations included integrated trailers within each movie page
+* A more robust testing suite
+* Search functionality
 
 # Project in Action
+## Home Page Layout
+![HomePage Layout](src/Assets/ReadmeAssets/Homepage.png)
+
+## Logging in and leaving comments
+![Logging in and leaving comments](src/Assets/ReadmeAssets/Logginginandcomment.gif)
+
+## Rating Functionality
+![Rating functionality](src/Assets/ReadmeAssets/Ratings.gif)
+
+## Dynamic Routing
+![Dynamic Routing](src/Assets/ReadmeAssets/Routing.gif)

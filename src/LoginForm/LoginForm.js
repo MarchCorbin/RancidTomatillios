@@ -20,7 +20,7 @@ function LoginForm(props) {
         className='login-input'
         id='passwordInput'
         value={props.password}
-        type='text'
+        type='password'
         name='password' 
         placeholder='Password'
         onChange={event => props.handleChange(event)}
