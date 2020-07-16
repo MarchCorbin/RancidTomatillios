@@ -3,6 +3,7 @@ import Login from './Login';
 
 import '@testing-library/jest-dom'
 import { render, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom'
 
 describe('Login', () => {
 
@@ -15,7 +16,7 @@ describe('Login', () => {
       getByText, 
       getByPlaceholderText, 
       getByRole 
-    } = render(<Login />)
+    } = render(<MemoryRouter><Login /></MemoryRouter>)
 
     const message = getByText('Enter login information')
     const emailInput = getByPlaceholderText('Email')

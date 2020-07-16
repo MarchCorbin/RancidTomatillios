@@ -12,9 +12,13 @@ describe('SingleMovieDetails', () => {
   it('should render a header and a movie details section on the page', () => {
     const { getByTestId } = render(
       <BrowserRouter>
-        <SingleMovieDetails currentUser={this.state.currentUser}
-          currentUserRatings={this.state.currentUserRatings}
-          fetchUserRatings={jest.fn()}/>
+        <SingleMovieDetails 
+          currentUser={{id: 1}}
+          currentUserRatings={[]}
+          fetchUserRatings={jest.fn()}
+          renderHeart={jest.fn()}
+          toggleFavorite={jest.fn()}
+        />
       </BrowserRouter>
     )
     const header = getByTestId('header')
