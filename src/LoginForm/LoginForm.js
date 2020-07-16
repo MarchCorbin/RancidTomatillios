@@ -4,9 +4,10 @@ import './LoginForm.css'
 function LoginForm(props) {
   return (
     <form onSubmit={e => props.handleSubmit(e)} className='login-form'>
-      {!props.isValid ? <h3 className='invalid-login-msg'>Invalid login!  Try again.</h3> : <h3>Enter login information</h3>}
+      {!props.isValid ? <h1 className='invalid-login-msg'>Invalid login!  Try again.</h1> : <h1>Enter login information</h1>}
       <label htmlFor='emailInput'>Email</label>
       <input 
+        className='login-input'
         id='emailInput'
         value={props.email}
         type='text'
@@ -16,6 +17,7 @@ function LoginForm(props) {
       />
       <label htmlFor='passwordInput'>Password</label>
       <input 
+        className='login-input'
         id='passwordInput'
         value={props.password}
         type='text'

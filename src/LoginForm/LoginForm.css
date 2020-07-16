@@ -17,13 +17,13 @@
   color: #FEFDD0
 }
 
-input {
+.login-input {
   align-self: center;
   border: 3px solid darkolivegreen;
   font-size: 15px;
-  height: 3em;
+  height: 1%;
   padding: 2%;
-  width: 26em;
+  width: 30%;
 }
 
 .submit-login-button {
