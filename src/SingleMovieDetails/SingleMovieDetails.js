@@ -8,7 +8,6 @@ import Comments from '../Comments/Comments'
 class SingleMovieDetails extends React.Component {
   constructor(props) {
     super(props)
-    // console.log(this.props, 'Single Movie props')
     this.state = {
       id: '',
       title: "",
@@ -52,17 +51,13 @@ class SingleMovieDetails extends React.Component {
   }
 
   deleteRating = async (ratingID) => {    
-    // console.log("deleteRating ID", ratingID)
-    // if (this.props.currentUser) {
-      const userID = this.props.currentUser.id
-      const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
-      return await fetch(url, { method: 'DELETE' })
-    // }
+    const userID = this.props.currentUser.id
+    const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userID}/ratings/${ratingID}`
+    return await fetch(url, { method: 'DELETE' })
   }
 
   reFetchUpdate = () => {
     const movieID = this.props.match.params.id
-    console.log(movieID, "ID")
     fetchSingleMovie(movieID)
       .then(data => this.updateState(data))
   }

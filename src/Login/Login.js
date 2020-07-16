@@ -50,7 +50,6 @@ class Login extends React.Component {
 
   loginCredentials = (e) => {
     e.preventDefault()
-    // console.log(this.props.history)
     let postInput;
     if (!this.state.email || !this.state.password) {
       this.handleInvalidLogin()
