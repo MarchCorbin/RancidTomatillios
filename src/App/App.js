@@ -38,8 +38,7 @@ class App extends React.Component {
   }
 
   logout = () => {
-    this.state.currentUser !== null &&
-      this.setState({ currentUser: null })
+    this.state.currentUser !== null && this.setState({ currentUser: null })
   }
  
   getCurrentUser = (data) => {
@@ -49,8 +48,8 @@ class App extends React.Component {
   removeFavorite = async (id) => {
     await deleteFromFavorites(id)
     await getFavorites()
-    .then(data => this.setState({ currentUserFavorites: data}))
-    .catch(err => console.error(err))
+      .then(data => this.setState({ currentUserFavorites: data}))
+      .catch(err => console.error(err))
   } 
   
   addFavorite = async (id) => {
@@ -61,7 +60,6 @@ class App extends React.Component {
   }
   
   toggleFavorite = (id) => {
-    //toggle icon
     let ids = this.state.currentUserFavorites.map(movie => movie.movieID)
     console.log(ids, 'IDS')
     console.log(id, 'ID')
@@ -73,10 +71,8 @@ class App extends React.Component {
   }
 
   getUserFavorites = () => {
-    // console.log(getFavorites(), 'getFavorites FN')
     getFavorites()
       .then(data => {
-        // console.log(data, 'DATA')
         this.setState({ currentUserFavorites: data})
       })
       .catch(err => console.error(err))
@@ -84,72 +80,68 @@ class App extends React.Component {
 
   renderHeart = (id) => {
     let movieIDs = this.state.currentUserFavorites.map(movie => movie.movieID)
-    console.log(movieIDs, 'IDS!!!')
-    console.log(id, "ID")
     return movieIDs.includes(id) ? redHeart : yellowHeart
-
   }
 
   render () {
-    // console.log('RERENDER APP')
     return (
       <Router>
-      <Switch>
-        <Route exact path="/">
-          <Header 
-            logout={this.logout}
-            currentUser={this.state.currentUser}
-          />
-          <Home 
-            currentUser={this.state.currentUser} 
-            currentUserRatings={this.state.currentUserRatings}
-            logOutUser={this.logOutUser}
-            renderHeart={this.renderHeart}
-            toggleFavorite={this.toggleFavorite}
-          />
-        </Route>
-        <Route path='/login'>
-          <Header 
-            loginLogout={this.loginLogout}
-            currentUser={this.state.currentUser}
-          />
-          <Login 
-            getUserFavorites={this.getUserFavorites}
-            getCurrentUser={this.getCurrentUser} 
-            fetchUserRatings={this.fetchUserRatings}
-            currentUser={this.state.currentUser}
-          />
-        </Route>
-        <Route path='/movies/:id'>
-          <Header 
-            loginLogout={this.loginLogout}
-            currentUser={this.state.currentUser}
-          />
-          <SingleMovieDetails 
-            currentUser={this.state.currentUser} 
-            currentUserRatings={this.state.currentUserRatings}
-            fetchUserRatings={this.fetchUserRatings}
-            renderHeart={this.renderHeart}
-            toggleFavorite={this.toggleFavorite}
-          />
-        </Route>
-        <Route path='/favorites'>
-          <Header 
-            loginLogout={this.loginLogout}
-            currentUser={this.state.currentUser}
-          />     
-          <Favorites 
-            currentUser={this.state.currentUser} 
-            currentUserRatings={this.state.currentUserRatings}
-            favorites={this.state.currentUserFavorites}
-            renderHeart={this.renderHeart}
-            toggleFavorite={this.toggleFavorite}
-          />   
-        </Route>
-        <Route path='/error'>
-          <ErrorPage />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route exact path="/">
+            <Header 
+              logout={this.logout}
+              currentUser={this.state.currentUser}
+            />
+            <Home 
+              currentUser={this.state.currentUser} 
+              currentUserRatings={this.state.currentUserRatings}
+              logOutUser={this.logOutUser}
+              renderHeart={this.renderHeart}
+              toggleFavorite={this.toggleFavorite}
+            />
+          </Route>
+          <Route path='/login'>
+            <Header 
+              loginLogout={this.loginLogout}
+              currentUser={this.state.currentUser}
+            />
+            <Login 
+              getUserFavorites={this.getUserFavorites}
+              getCurrentUser={this.getCurrentUser} 
+              fetchUserRatings={this.fetchUserRatings}
+              currentUser={this.state.currentUser}
+            />
+          </Route>
+          <Route path='/movies/:id'>
+            <Header 
+              loginLogout={this.loginLogout}
+              currentUser={this.state.currentUser}
+            />
+            <SingleMovieDetails 
+              currentUser={this.state.currentUser} 
+              currentUserRatings={this.state.currentUserRatings}
+              fetchUserRatings={this.fetchUserRatings}
+              renderHeart={this.renderHeart}
+              toggleFavorite={this.toggleFavorite}
+            />
+          </Route>
+          <Route path='/favorites'>
+            <Header 
+              loginLogout={this.loginLogout}
+              currentUser={this.state.currentUser}
+            />     
+            <Favorites 
+              currentUser={this.state.currentUser} 
+              currentUserRatings={this.state.currentUserRatings}
+              favorites={this.state.currentUserFavorites}
+              renderHeart={this.renderHeart}
+              toggleFavorite={this.toggleFavorite}
+            />   
+          </Route>
+          <Route path='/error'>
+            <ErrorPage />
+          </Route>
+        </Switch>
       </Router>
     )
   }

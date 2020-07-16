@@ -47,6 +47,8 @@ describe('MovieCardContainer', () => {
           currentUser={currentUser}
           currentUserRatings={currentUserRatings}
           allMovies = { allMovies }
+          renderHeart = {jest.fn()}
+          toggleFavorite = {jest.fn()}
         />
       </Router>)
     const movieTitle1 = getByText('Boondock Saints') 
@@ -56,21 +58,4 @@ describe('MovieCardContainer', () => {
     expect(movieTitle2).toBeInTheDocument()
     expect(movieTitle3).toBeInTheDocument()
   })
-
-
-
-
-   // it('should render ALL of the movies on the home page', () => {
-  //   const { getByRole, getAllByTestId } = render(<MemoryRouter>
-  //   <Home
-  //     currentUser={null}
-  //     currentUserRatings= {[]}
-  //     getCurrentUser={jest.fn()}
-  //     logOutUser={jest.fn()}
-  //     FetchUserRatings={jest.fn()}
-
-  //   /></MemoryRouter>)
-  //   const allMovies = getAllByTestId('movie-card')
-  //   expect(allMovies).toHaveLength(40)
-  // })
 }) 
