@@ -26,5 +26,17 @@
 
 .movie-card-title {
   display: flex;
+  font-size: 1.5em;
+  justify-content: space-between;
+  width: 100%
+}
+
+.heart-icon {
+  margin-right: 5%;
+  width: 10%
+}
+
+.movie-card-title-bar {
+  display: flex;
   justify-content: space-between;
 }

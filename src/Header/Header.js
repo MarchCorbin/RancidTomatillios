@@ -19,12 +19,14 @@ function Header({ currentUser, logout, history }) {
           <h2 className="greeting">Welcome, {currentUser.name}!</h2> : 
           <h2 className="greeting">Welcome!</h2>
         }
-        {currentUser && <Link to='/favorites' className='header-button'>Favorites</Link>}
       </section>
-      {currentUser ? 
-        <Link to={previousRoute} className='header-button' onClick={logout}>LOGOUT</Link> : 
-        <Link to='/login' className='header-button' onClick={logout}>LOGIN</Link>
-      }
+      <section className='header-buttons'>
+        {currentUser ? 
+          <Link to={previousRoute} className='header-button' onClick={logout}>LOGOUT</Link> : 
+          <Link to='/login' className='header-button header-login' onClick={logout}>LOGIN</Link>
+        }
+        {currentUser && <Link to='/favorites' className='header-button'>FAVORITES</Link>}
+      </section>
     </header>
   )
 }

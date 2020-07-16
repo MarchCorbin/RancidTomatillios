@@ -119,13 +119,13 @@ class SingleMovieDetails extends React.Component {
             <p>Genres: {this.state.genres}</p>
             <p>Budget: {this.state.budget}</p>
             <p>Revenue: {this.state.revenue}</p>
-              <section className="comments-section">
-                <Comments 
-                movieId={this.state.id}
-                user={this.props.currentUser}
-                rating={this.state.user_rating}
-                />
-              </section>
+            <section className="comments-section">
+              <Comments 
+              movieId={this.state.id}
+              user={this.props.currentUser}
+              rating={this.state.user_rating}
+              />
+            </section>
           </section>
         </section>  
       </main>

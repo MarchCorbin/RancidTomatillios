@@ -1,21 +1,21 @@
 .comments-section {
   height: 21em;
+  margin-top: 5%;
   overflow: visible;
 }
 
 .comments-btn {
   background: #FEFDD0;
-  background: #FEFDD0;
+  border: lightgreen;
+  border-radius: 6px;
   height: 3.4em;
   width: 5em;
-  border-radius: 6px;
-  border: lightgreen;
 }
 
 .commented-section {
-background: transparent;
-padding: .3em .2em;
-margin-bottom: 20px;
+  background: transparent;
+  padding: .3em .2em;
+  margin-bottom: 20px;
 }
 
 .conditional {
@@ -24,8 +24,9 @@ margin-bottom: 20px;
 
 .each-comment {
   background: transparent;
+  border-bottom: 2px solid;
   padding: .3em .2em;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .placeholder-text {
@@ -33,5 +34,11 @@ margin-bottom: 20px;
 }
 
 .comment-input {
-  margin: 1em;
+  padding: 3%;
+  width: 80%
+}
+
+.comment-form {
+  display: flex;
+  justify-content: space-between;
 }
