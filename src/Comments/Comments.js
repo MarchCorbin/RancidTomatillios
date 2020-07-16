@@ -42,7 +42,7 @@ class Comments extends React.Component {
         comment: this.state.comment, 
         movieID: this.state.movieID })
     })
-    .catch(err => console.log(err))
+    .catch(err => console.error(err))
   }
 
   handleClick = async () => {

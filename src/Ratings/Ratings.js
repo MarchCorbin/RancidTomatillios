@@ -6,7 +6,6 @@ import { fetchUserRatingsData } from '../fetchCalls/fetchCalls';
 class Ratings extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props, 'Props')
     this.state = {
       rating: null,
 
@@ -14,8 +13,7 @@ class Ratings extends React.Component {
   }
  
   componentDidUpdate = (prevProps) => {
-    // console.log("6) Ratings - this.props.userRating: ", this.props.userRating)
-    // console.log("6) Ratings - prevProps.userRating: ", prevProps.userRating)
+
     if (this.props.userRating !== prevProps.userRating) {
       if (!this.props.userRating) {
         this.setState({ rating: null })
@@ -26,8 +24,6 @@ class Ratings extends React.Component {
   } 
 
   onStarClick(nextValue, prevValue) {
-    // console.log(prevValue, 'PREVIOUS VALUE')
-    // console.log(nextValue, 'NEXTVALUE')
     if (this.state.rating === null){
       this.setState({rating: nextValue});
       this.postUserRating(nextValue)
@@ -38,7 +34,6 @@ class Ratings extends React.Component {
   }
 
   async postUserRating(rating) {
-    // console.log("4) postUserRating - rating :", rating)
     const postObj = { "movie_id":this.props.movieId, "rating":rating }
     return await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${this.props.currentUser.id}/ratings`, {
       method: 'POST',
@@ -54,7 +49,6 @@ class Ratings extends React.Component {
   }
 
   updateRating = async (prevRating, newRating) => {
-    // console.log("5) Ratings - user rating: ", this.props.userRating)
     const data = { user: this.props.currentUser }
     if(this.props.userRating){
       await this.props.deleteRating(this.props.userRating.id)
@@ -66,7 +60,6 @@ class Ratings extends React.Component {
   render() {
     return (                
       <section className='ratings'>
-        {/* <h4>Your Rating: {this.state.rating}</h4> */}
         <p className='single-movie-user-rating'>Your Rating: {this.state.rating}</p>
         <StarRatingComponent 
           name="rate1" 

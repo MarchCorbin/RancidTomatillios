@@ -30,7 +30,6 @@ class App extends React.Component {
     let userId = data.user.id
     return await fetchUserRatingsData(userId)
       .then(data => {
-        // console.log("1) fetchUserRatings BEFORE🔫: ", this.state.currentUserRatings)
         this.setState({currentUserRatings: data.ratings})
         return data
       })
@@ -61,8 +60,6 @@ class App extends React.Component {
   
   toggleFavorite = (id) => {
     let ids = this.state.currentUserFavorites.map(movie => movie.movieID)
-    console.log(ids, 'IDS')
-    console.log(id, 'ID')
     if (!ids.includes(id)) {
       this.addFavorite(id)
     } else {

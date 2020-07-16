@@ -17,7 +17,6 @@ class Favorites extends Component {
     fetchAllMovies()
       .then(data => {
         this.setState({ favoriteMovies: data.movies.filter(movie => favIDs.includes(movie.id))})
-        console.log(this.state.favoriteMovies, 'STATE')
       })
   }
 
