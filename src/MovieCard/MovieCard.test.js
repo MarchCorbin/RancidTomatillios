@@ -59,8 +59,7 @@ describe('MovieCard', () => {
         <MovieCard 
           id={1}
           poster='http://pics.com'
-          title='Boondock Saints'
-          releaseDate='1999-11-19'
+          title=
           avgRating={7.8}
         />
       </BrowserRouter>

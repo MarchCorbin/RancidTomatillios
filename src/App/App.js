@@ -36,6 +36,9 @@ class App extends React.Component {
       .catch(err => <Redirect to='/error' />)
   }
 
+
+  
+
   logout = () => {
     this.state.currentUser !== null && this.setState({ currentUser: null })
   }

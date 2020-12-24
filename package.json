@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/react": "10.4.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.2.1",
     "node-sass": "^4.14.1",
@@ -35,7 +36,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^10.4.7",
+    "@testing-library/react": "^10.4.9",
     "eslint-plugin-react": "^7.20.3",
     "jest-environment-jsdom-sixteen": "^1.0.3"
   }
