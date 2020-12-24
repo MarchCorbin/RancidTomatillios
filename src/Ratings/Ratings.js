@@ -13,7 +13,6 @@ class Ratings extends React.Component {
   }
  
   componentDidUpdate = (prevProps) => {
-
     if (this.props.userRating !== prevProps.userRating) {
       if (!this.props.userRating) {
         this.setState({ rating: null })
